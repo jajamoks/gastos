@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import CostsReducer from './CostsReducer';
+import CostInputReducer from './CostInputReducer';
 
 export default combineReducers({
-  costs: CostsReducer
+  cost: CostInputReducer
 });
