@@ -1,11 +1,16 @@
 import {
   UPDATE_COST,
-  UPDATE_CATEGORY
+  UPDATE_CATEGORY,
+  UPDATE_SUBCATEGORY,
+  SUBMIT_COST
 } from '../actions/types';
 
 const INITIAL_STATE = {
   amount: '',
-  category: ''
+  category: '',
+  subcategory: '',
+  date: null,
+  currency: 'colones'
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -15,6 +20,10 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, amount: action.payload }
     case UPDATE_CATEGORY:
       return { ...state, category: action.payload }
+    case UPDATE_SUBCATEGORY:
+      return { ...state, subcategory: action.payload }
+    case SUBMIT_COST:
+      return INITIAL_STATE;
     default:
       return state;
   }
