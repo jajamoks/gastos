@@ -4,17 +4,17 @@ import { Table } from 'react-bootstrap';
 
 class CostTable extends Component {
   renderCostItem() {
-    const options = this.props.costs.map((item, i) => {
+    const data = this.props.costs
+    const rows = data.map((item, i) => {
       return(
         <tr>
+          <td></td>
           <td>{item.amount}</td>
-          <td>{item.category}</td>
-          <td></td>
-          <td></td>
+          <td>{item.subcategory}</td>
         </tr>
       )
     })
-    return options;
+    return rows;
   }
 
   render() {
@@ -24,14 +24,23 @@ class CostTable extends Component {
         <Table>
           <thead>
             <tr>
+              <th></th>
               <th>Amount</th>
-              <th>Description</th>
-              <th>Category</th>
-              <th>Date</th>
+              <th>Subcategory</th>
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <th>Utilidades</th>
+              <td></td>
+              <td></td>
+            </tr>
             {this.renderCostItem()}
+            <tr>
+              <th>Casa</th>
+              <td></td>
+              <td></td>
+            </tr>
           </tbody>
         </Table>
       </div>
