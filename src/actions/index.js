@@ -1,5 +1,6 @@
 import {
-  SUBMIT_COST,
+  RESET_COST,
+  SAVE_COST,
   UPDATE_COST,
   UPDATE_CATEGORY,
   UPDATE_SUBCATEGORY
@@ -27,8 +28,8 @@ export const updateSubcategory = (text) => {
 }
 
 export const submitCost = ({ amount, category, subcategory, date }) => {
-  return {
-    type: SUBMIT_COST,
-    payload: { amount, category, subcategory, date }
+  return (dispatch) => {
+    dispatch({ type: SAVE_COST, payload: { amount, category, subcategory, date } });
+    dispatch({ type: RESET_COST })
   }
 }

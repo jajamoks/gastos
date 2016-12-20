@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CostInput from './components/CostInput';
+import CostTable from './components/CostTable';
 
 class App extends Component {
   render() {
@@ -8,6 +9,7 @@ class App extends Component {
         <h3>Gastos</h3>
         <CostInput />
         <hr/>
+        <CostTable />
       </div>
     );
   }

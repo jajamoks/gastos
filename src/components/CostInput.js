@@ -12,6 +12,13 @@ const optionsFun = ['Cine', 'Bar', 'Cafe', 'Eventos']
 const optionsGata = ['Veterinario', 'Comida', 'Arena', 'Juguetes']
 
 class CostInput extends Component {
+
+  onSubmit() {
+    const today = new Date();
+    const { amount, category, subcategory} = this.props;
+    this.props.submitCost({ amount, category, subcategory, date: today })
+  }
+
   onCostChange(e) {
     this.props.updateCost(e.target.value)
   }
@@ -127,10 +134,10 @@ class CostInput extends Component {
               {this.renderSubOptions()}
             </FormControl>
           </FormGroup>
-          <Button bsStyle='primary'>Guardar</Button>
+          <Button bsStyle='primary' onClick={this.onSubmit.bind(this)}>Guardar</Button>
         </Form>
       </div>
-    )
+    );
   }
 }
 
