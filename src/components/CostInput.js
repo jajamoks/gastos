@@ -92,51 +92,54 @@ class CostInput extends Component {
 
   render() {
     return (
-      <div>
-        <Form>
-          <FormGroup>
-            <ControlLabel>Enter cost: </ControlLabel>
-            <InputGroup>
-              <FormControl
-                type='text'
-                value={this.props.amount}
-                placeholder='Enter amount'
-                onChange={this.onCostChange.bind(this)}
-              />
-              <InputGroup.Addon>$</InputGroup.Addon>
-            </InputGroup><br/>
-          </FormGroup>
-          <FormGroup controlId="formControlsSelect">
-            <ControlLabel>Categoría</ControlLabel>
+      <Form>
+        <FormGroup controlId="formControlsSelect">
+          <ControlLabel>Categoría</ControlLabel>
+          <FormControl
+            value={this.props.category}
+            onChange={this.onCategoryChange.bind(this)}
+            componentClass="select"
+          >
+            <option value="">-select one-</option>
+            <option value="Utilidades">Utilidades</option>
+            <option value="Comida">Comida</option>
+            <option value="Carro">Carro</option>
+            <option value="Casa">Casa</option>
+            <option value="Personal">Personal</option>
+            <option value="Fun">Fun</option>
+            <option value="Gata">Gata</option>
+          </FormControl>
+        </FormGroup>
+        <br/>
+        <FormGroup>
+          <ControlLabel>SubCategoría</ControlLabel>
+          <FormControl
+            value={this.props.subcategory}
+            onChange={this.onSubcategoryChange.bind(this)}
+            componentClass='select'
+          >
+            <option value="">-select one-</option>
+            {this.renderSubOptions()}
+          </FormControl>
+        </FormGroup>
+        <FormGroup>
+          <ControlLabel>Costo: </ControlLabel>
+          <InputGroup>
             <FormControl
-              value={this.props.category}
-              onChange={this.onCategoryChange.bind(this)}
-              componentClass="select"
-            >
-              <option value="">-select one-</option>
-              <option value="Utilidades">Utilidades</option>
-              <option value="Comida">Comida</option>
-              <option value="Carro">Carro</option>
-              <option value="Casa">Casa</option>
-              <option value="Personal">Personal</option>
-              <option value="Fun">Fun</option>
-              <option value="Gata">Gata</option>
-            </FormControl>
-          </FormGroup>
-          <FormGroup>
-            <ControlLabel>SubCategoría</ControlLabel>
-            <FormControl
-              value={this.props.subcategory}
-              onChange={this.onSubcategoryChange.bind(this)}
-              componentClass='select'
-            >
-              <option value="">-select one-</option>
-              {this.renderSubOptions()}
-            </FormControl>
-          </FormGroup>
-          <Button bsStyle='primary' onClick={this.onSubmit.bind(this)}>Guardar</Button>
-        </Form>
-      </div>
+              type='text'
+              value={this.props.amount}
+              placeholder='Enter amount'
+              onChange={this.onCostChange.bind(this)}
+            />
+            <InputGroup.Addon>$</InputGroup.Addon>
+          </InputGroup><br/>
+        </FormGroup>
+        <FormGroup>
+          <ControlLabel>Descripción</ControlLabel>
+          <FormControl componentClass='textarea'></FormControl>
+        </FormGroup>
+        <Button bsStyle='primary' onClick={this.onSubmit.bind(this)}>Guardar</Button>
+      </Form>
     );
   }
 }

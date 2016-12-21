@@ -10,6 +10,9 @@ h3 {
 
 form {
   text-align: left;
-  width: 20em;
-  margin: 0 auto;
+  /*margin: 0 auto;*/
+}
+
+.center {
+  text-align: center;
 }

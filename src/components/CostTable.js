@@ -17,6 +17,8 @@ class CostTable extends Component {
     return rows;
   }
 
+  // use lodash filter to sort by category
+
   render() {
     console.log(this.props.costs)
     return (
@@ -27,17 +29,58 @@ class CostTable extends Component {
               <th></th>
               <th>Amount</th>
               <th>Subcategory</th>
+              <th>Descripción</th>
+              <th>Fecha</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th>Utilidades</th>
+              <th>UTILIDADES</th>
+              <td></td>
+              <td></td>
               <td></td>
               <td></td>
             </tr>
             {this.renderCostItem()}
             <tr>
-              <th>Casa</th>
+              <th>COMIDA</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>CARRO</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>CASA</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>PERSONAL</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>FUN</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>GATA</th>
+              <td></td>
+              <td></td>
               <td></td>
               <td></td>
             </tr>
