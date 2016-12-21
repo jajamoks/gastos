@@ -146,7 +146,9 @@ class CostInput extends Component {
             value={this.props.description}
           />
         </FormGroup>
-        <Button bsStyle='primary' onClick={this.onSubmit.bind(this)}>Guardar</Button>
+        <Button bsStyle='primary' onClick={this.onSubmit.bind(this)} block>
+          Guardar
+        </Button>
       </Form>
     );
   }

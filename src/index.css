@@ -8,6 +8,10 @@ h3 {
   text-align: center;
 }
 
+thead tr {
+  background-color: #ccc;
+}
+
 .center {
   text-align: center;
 }

@@ -6,7 +6,7 @@ import { Table } from 'react-bootstrap';
 class CostTable extends Component {
   renderUtilidades() {
     let data = _.filter(this.props.costs, ['category', 'Utilidades'])
-    const rows = data.map((item, i) => {
+    let rows = data.map((item, i) => {
       return(
         <tr className='left-pad'>
           <td>{item.subcategory}</td>
@@ -21,7 +21,7 @@ class CostTable extends Component {
 
   renderComida() {
     let data = _.filter(this.props.costs, ['category', 'Comida'])
-    const rows = data.map((item, i) => {
+    let rows = data.map((item, i) => {
       return(
         <tr className='left-pad'>
           <td>{item.subcategory}</td>
@@ -34,8 +34,6 @@ class CostTable extends Component {
     return rows;
   }
 
-  // use lodash filter to sort by category
-
   render() {
     console.log(this.props.costs)
     return (
@@ -43,7 +41,7 @@ class CostTable extends Component {
         <Table bordered hover>
           <thead>
             <tr>
-              <th></th>
+              <th>Categorías</th>
               <th className='center'>Costo</th>
               <th className='center'>Descripción</th>
               <th className='center'>Fecha</th>
