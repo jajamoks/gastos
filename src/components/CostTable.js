@@ -1,10 +1,26 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
 
 class CostTable extends Component {
   renderUtilidades() {
-    const data = this.props.costs
+    let data = _.filter(this.props.costs, ['category', 'Utilidades'])
+    const rows = data.map((item, i) => {
+      return(
+        <tr className='left-pad'>
+          <td>{item.subcategory}</td>
+          <td>{item.amount}</td>
+          <td>{item.description}</td>
+          <td></td>
+        </tr>
+      )
+    })
+    return rows;
+  }
+
+  renderComida() {
+    let data = _.filter(this.props.costs, ['category', 'Comida'])
     const rows = data.map((item, i) => {
       return(
         <tr className='left-pad'>
@@ -24,19 +40,18 @@ class CostTable extends Component {
     console.log(this.props.costs)
     return (
       <div>
-        <Table>
+        <Table bordered hover>
           <thead>
             <tr>
               <th></th>
-              <th>Costo</th>
-              <th>Descripción</th>
-              <th>Fecha</th>
+              <th className='center'>Costo</th>
+              <th className='center'>Descripción</th>
+              <th className='center'>Fecha</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th>UTILIDADES</th>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -47,11 +62,10 @@ class CostTable extends Component {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
+            {this.renderComida()}
             <tr>
               <th>CARRO</th>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -61,11 +75,9 @@ class CostTable extends Component {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <th>PERSONAL</th>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -75,11 +87,9 @@ class CostTable extends Component {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <th>GATA</th>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
