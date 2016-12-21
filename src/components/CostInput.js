@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, FormControl, ControlLabel, InputGroup } from 'react-bootstrap';
-import { updateCost, updateCategory, updateSubcategory, submitCost } from '../actions'
+import { updateCost, updateCategory, updateSubcategory, updateDescription, submitCost } from '../actions'
 
 const optionsUtil = ['Agua', 'Electridad', 'Telefono', 'Internet y Cable', 'Gas', 'Impuestos']
 const optionsComida = ['Compras', 'Restaurante']
@@ -15,20 +15,24 @@ class CostInput extends Component {
 
   onSubmit() {
     const today = new Date();
-    const { amount, category, subcategory} = this.props;
-    this.props.submitCost({ amount, category, subcategory, date: today })
+    const { amount, category, subcategory, description } = this.props;
+    this.props.submitCost({ amount, category, subcategory, description, date: today })
   }
 
   onCostChange(e) {
-    this.props.updateCost(e.target.value)
+    this.props.updateCost(e.target.value);
   }
 
   onCategoryChange(e) {
-    this.props.updateCategory(e.target.value)
+    this.props.updateCategory(e.target.value);
   }
 
   onSubcategoryChange(e) {
-    this.props.updateSubcategory(e.target.value)
+    this.props.updateSubcategory(e.target.value);
+  }
+
+  onDescriptionChange(e) {
+    this.props.updateDescription(e.target.value);
   }
 
   renderSubOptions() {
@@ -136,7 +140,11 @@ class CostInput extends Component {
         </FormGroup>
         <FormGroup>
           <ControlLabel>Descripción</ControlLabel>
-          <FormControl componentClass='textarea'></FormControl>
+          <FormControl
+            componentClass='textarea'
+            onChange={this.onDescriptionChange.bind(this)}
+            value={this.props.description}
+          />
         </FormGroup>
         <Button bsStyle='primary' onClick={this.onSubmit.bind(this)}>Guardar</Button>
       </Form>
@@ -148,8 +156,9 @@ const mapStateToProps = state => {
   return {
     amount: state.cost.amount,
     category: state.cost.category,
-    subcategory: state.cost.subcategory
+    subcategory: state.cost.subcategory,
+    description: state.cost.description
   }
 }
 
-export default connect(mapStateToProps, { updateCost, updateCategory, updateSubcategory, submitCost })(CostInput);
+export default connect(mapStateToProps, { updateCost, updateCategory, updateSubcategory, updateDescription, submitCost })(CostInput);

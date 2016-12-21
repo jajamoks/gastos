@@ -6,8 +6,8 @@ import CostTable from './components/CostTable';
 class App extends Component {
   render() {
     return (
-      <Grid className='container'>
-        <h3>Gastos</h3>
+      <Grid>
+        <h3><b>Gastos</b></h3>
         <br/>
         <Row>
           <Col lg={9}>

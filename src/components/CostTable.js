@@ -3,14 +3,15 @@ import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
 
 class CostTable extends Component {
-  renderCostItem() {
+  renderUtilidades() {
     const data = this.props.costs
     const rows = data.map((item, i) => {
       return(
-        <tr>
-          <td></td>
-          <td>{item.amount}</td>
+        <tr className='left-pad'>
           <td>{item.subcategory}</td>
+          <td>{item.amount}</td>
+          <td>{item.description}</td>
+          <td></td>
         </tr>
       )
     })
@@ -27,8 +28,7 @@ class CostTable extends Component {
           <thead>
             <tr>
               <th></th>
-              <th>Amount</th>
-              <th>Subcategory</th>
+              <th>Costo</th>
               <th>Descripción</th>
               <th>Fecha</th>
             </tr>
@@ -41,7 +41,7 @@ class CostTable extends Component {
               <td></td>
               <td></td>
             </tr>
-            {this.renderCostItem()}
+            {this.renderUtilidades()}
             <tr>
               <th>COMIDA</th>
               <td></td>
