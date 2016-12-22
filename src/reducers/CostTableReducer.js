@@ -1,9 +1,11 @@
 import moment from 'moment';
 import { SAVE_COST, SELECT_MONTH } from '../actions/types'
 
+moment.locale('es')
+
 const INITIAL_STATE = {
   records: [],
-  selectedMonth: moment().format('M-YY')
+  selectedMonth: moment().format('MMM YY').toUpperCase()
 };
 
 export default (state = INITIAL_STATE, action) => {

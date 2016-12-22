@@ -1,11 +1,8 @@
-import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
 import { getUtilidades, getComida, getCarro, getCasa, getPersonal, getFun, getGata, getTotalCost } from '../selectors';
 import TableRow from './TableRow';
-
-moment.locale('es')
 
 class CostTable extends Component {
   renderUtilidades() {
@@ -72,11 +69,10 @@ class CostTable extends Component {
   }
 
   render() {
-    const month = moment().format('MMMM').toUpperCase()
     return (
       <div>
         <div>
-          <h4 className='month-header'>{month}</h4>
+          <h4 className='month-header'>{this.props.selectedMonth}</h4>
         </div>
         <div className='total-display'>
           <h4>Total: {this.props.total} colones</h4>
@@ -156,7 +152,8 @@ const mapStateToProps = state => {
     personal: getPersonal(state),
     fun: getFun(state),
     gata: getGata(state),
-    total: getTotalCost(state)
+    total: getTotalCost(state),
+    selectedMonth: state.costRecords.selectedMonth
   }
 }
 

@@ -12,10 +12,12 @@ const optionsPersonal = ['Corte Pelo', 'Dentista', 'Doctor', 'Medicinas', 'Otros
 const optionsFun = ['Cine', 'Bar', 'Cafe', 'Eventos']
 const optionsGata = ['Veterinario', 'Comida', 'Arena', 'Juguetes']
 
+moment.locale('es')
+
 class CostInput extends Component {
 
   onSubmit() {
-    const now = moment().format('M-YY');
+    const now = moment().format('MMM YY').toUpperCase();
     const { amount, category, subcategory, description } = this.props;
     this.props.submitCost({ amount, category, subcategory, description, date: now })
   }

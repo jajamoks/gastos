@@ -11,15 +11,12 @@ class App extends Component {
         <h3><b>Gastos</b></h3>
         <br/>
         <Row>
-          <Col lg={9}>
-            <MonthSelector />
-          </Col>
-        </Row>
-        <Row>
-          <Col lg={9}>
+          <Col lg={8}>
             <CostTable />
           </Col>
-          <Col lg={1} />
+          <Col lg={2} className='center'>
+            <MonthSelector />
+          </Col>
           <Col lg={2}>
             <CostInput />
           </Col>
