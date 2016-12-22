@@ -3,6 +3,10 @@ import { createSelector } from 'reselect';
 
 const getCosts = (state) => state.costRecords.records
 
+const getCostsForMonth = (state) => {
+  return _.filter(state.costRecords.records, ['date', state.costRecords.selectedMonth])
+}
+
 export const getAvailableMonths = createSelector(
   getCosts, (costs) => {
     let allDates = _.map(costs, 'date')
@@ -12,35 +16,35 @@ export const getAvailableMonths = createSelector(
 )
 
 export const getUtilidades = createSelector(
-  getCosts, (costs) => _.filter(costs, ['category', 'Utilidades'])
+  getCostsForMonth, (costs) => _.filter(costs, ['category', 'Utilidades'])
 )
 
 export const getComida = createSelector(
-  getCosts, (costs) => _.filter(costs, ['category', 'Comida'])
+  getCostsForMonth, (costs) => _.filter(costs, ['category', 'Comida'])
 )
 
 export const getCarro = createSelector(
-  getCosts, (costs) => _.filter(costs, ['category', 'Carro'])
+  getCostsForMonth, (costs) => _.filter(costs, ['category', 'Carro'])
 )
 
 export const getCasa = createSelector(
-  getCosts, (costs) => _.filter(costs, ['category', 'Casa'])
+  getCostsForMonth, (costs) => _.filter(costs, ['category', 'Casa'])
 )
 
 export const getPersonal = createSelector(
-  getCosts, (costs) => _.filter(costs, ['category', 'Personal'])
+  getCostsForMonth, (costs) => _.filter(costs, ['category', 'Personal'])
 )
 
 export const getFun = createSelector(
-  getCosts, (costs) => _.filter(costs, ['category', 'Fun'])
+  getCostsForMonth, (costs) => _.filter(costs, ['category', 'Fun'])
 )
 
 export const getGata = createSelector(
-  getCosts, (costs) => _.filter(costs, ['category', 'Gata'])
+  getCostsForMonth, (costs) => _.filter(costs, ['category', 'Gata'])
 )
 
 export const getTotalCost = createSelector(
-  getCosts, (costs) => {
+  getCostsForMonth, (costs) => {
     let allCosts = _.map(costs, 'amount')
     return _.sum(allCosts.map(Number))
   }

@@ -1,8 +1,9 @@
+import moment from 'moment';
 import { SAVE_COST, SELECT_MONTH } from '../actions/types'
 
 const INITIAL_STATE = {
   records: [],
-  selectedMonth: ''
+  selectedMonth: moment().format('M-YY')
 };
 
 export default (state = INITIAL_STATE, action) => {

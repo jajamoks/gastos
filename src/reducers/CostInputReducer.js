@@ -11,7 +11,6 @@ const INITIAL_STATE = {
   category: '',
   subcategory: '',
   description: '',
-  date: null,
   currency: 'colones'
 }
 
