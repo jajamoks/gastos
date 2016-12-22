@@ -2,33 +2,68 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
+import { getUtilidades, getComida, getCarro, getCasa, getPersonal, getFun, getGata } from '../selectors';
+import TableRow from './TableRow';
 
 class CostTable extends Component {
   renderUtilidades() {
-    let data = _.filter(this.props.costs, ['category', 'Utilidades'])
-    let rows = data.map((item, i) => {
+    let rows = this.props.utilidades.map((item, i) => {
       return(
-        <tr className='left-pad'>
-          <td>{item.subcategory}</td>
-          <td>{item.amount}</td>
-          <td>{item.description}</td>
-          <td></td>
-        </tr>
+        <TableRow key={i} item={item} />
       )
     })
     return rows;
   }
 
   renderComida() {
-    let data = _.filter(this.props.costs, ['category', 'Comida'])
-    let rows = data.map((item, i) => {
+    let rows = this.props.comida.map((item, i) => {
       return(
-        <tr className='left-pad'>
-          <td>{item.subcategory}</td>
-          <td>{item.amount}</td>
-          <td>{item.description}</td>
-          <td></td>
-        </tr>
+        <TableRow key={i} item={item} />
+      )
+    })
+    return rows;
+  }
+
+  renderCarro() {
+    let rows = this.props.carro.map((item, i) => {
+      return(
+        <TableRow key={i} item={item} />
+      )
+    })
+    return rows;
+  }
+
+  renderCasa() {
+    let rows = this.props.casa.map((item, i) => {
+      return(
+        <TableRow key={i} item={item} />
+      )
+    })
+    return rows;
+  }
+
+  renderPersonal() {
+    let rows = this.props.personal.map((item, i) => {
+      return (
+        <TableRow key={i} item={item} />
+      );
+    })
+    return rows;
+  }
+
+  renderFun() {
+    let rows = this.props.fun.map((item, i) => {
+      return(
+        <TableRow key={i} item={item} />
+      )
+    })
+    return rows;
+  }
+
+  renderGata() {
+    let rows = this.props.gata.map((item, i) => {
+      return(
+        <TableRow key={i} item={item} />
       )
     })
     return rows;
@@ -38,6 +73,13 @@ class CostTable extends Component {
     console.log(this.props.costs)
     return (
       <div>
+        <div>
+          <h4>Deciembre</h4>
+
+        </div>
+        <div>
+          <h4>Total: {this.props.costs.total}</h4>
+        </div>
         <Table bordered hover>
           <thead>
             <tr>
@@ -68,30 +110,35 @@ class CostTable extends Component {
               <td></td>
               <td></td>
             </tr>
+            {this.renderCarro()}
             <tr>
               <th>CASA</th>
               <td></td>
               <td></td>
               <td></td>
             </tr>
+            {this.renderCasa()}
             <tr>
               <th>PERSONAL</th>
               <td></td>
               <td></td>
               <td></td>
             </tr>
+            {this.renderPersonal()}
             <tr>
               <th>FUN</th>
               <td></td>
               <td></td>
               <td></td>
             </tr>
+            {this.renderFun()}
             <tr>
               <th>GATA</th>
               <td></td>
               <td></td>
               <td></td>
             </tr>
+            {this.renderGata()}
           </tbody>
         </Table>
       </div>
@@ -101,7 +148,14 @@ class CostTable extends Component {
 
 const mapStateToProps = state => {
   return {
-    costs: state.costRecords.records
+    costs: state.costRecords.records,
+    utilidades: getUtilidades(state),
+    comida: getComida(state),
+    carro: getCarro(state),
+    casa: getCasa(state),
+    personal: getPersonal(state),
+    fun: getFun(state),
+    gata: getGata(state)
   }
 }
 
