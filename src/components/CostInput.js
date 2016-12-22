@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, FormControl, ControlLabel, InputGroup } from 'react-bootstrap';
@@ -14,9 +15,9 @@ const optionsGata = ['Veterinario', 'Comida', 'Arena', 'Juguetes']
 class CostInput extends Component {
 
   onSubmit() {
-    const today = new Date();
+    const now = moment().format('MMM YYYY');
     const { amount, category, subcategory, description } = this.props;
-    this.props.submitCost({ amount, category, subcategory, description, date: today })
+    this.props.submitCost({ amount, category, subcategory, description, date: now })
   }
 
   onCostChange(e) {

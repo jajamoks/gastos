@@ -6,7 +6,7 @@ const TableRow = ({ item }) => {
       <td>{item.subcategory}</td>
       <td>{item.amount}</td>
       <td>{item.description}</td>
-      <td></td>
+      <td>{item.date}</td>
     </tr>
   )
 }
