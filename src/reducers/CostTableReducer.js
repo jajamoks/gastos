@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { SAVE_COST, SELECT_MONTH } from '../actions/types'
+import { SAVE_COST, MONTH_SELECT } from '../actions/types'
 
 moment.locale('es')
 
@@ -16,7 +16,7 @@ export default (state = INITIAL_STATE, action) => {
           ...state.records, action.payload
         ]
       })
-    case SELECT_MONTH:
+    case MONTH_SELECT:
       return { ...state, selectedMonth: action.payload }
     default:
       return state;
