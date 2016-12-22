@@ -5,7 +5,7 @@ moment.locale('es')
 
 const INITIAL_STATE = {
   records: [],
-  selectedMonth: moment().format('MMM YY').toUpperCase()
+  selectedMonth: moment().format('MMMM-YY')
 };
 
 export default (state = INITIAL_STATE, action) => {

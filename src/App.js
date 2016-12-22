@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
 import firebase from 'firebase';
-import CostInput from './components/CostInput';
-import CostTable from './components/CostTable';
-import MonthSelector from './components/MonthSelector';
 
 class App extends Component {
   componentWillMount() {
@@ -19,21 +15,9 @@ class App extends Component {
 
   render() {
     return (
-      <Grid>
-        <h3><b>Gastos</b></h3>
-        <br/>
-        <Row>
-          <Col lg={8}>
-            <CostTable />
-          </Col>
-          <Col lg={2} className='center'>
-            <MonthSelector />
-          </Col>
-          <Col lg={2}>
-            <CostInput />
-          </Col>
-        </Row>
-      </Grid>
+      <div>
+        {this.props.children}
+      </div>
     );
   }
 }
