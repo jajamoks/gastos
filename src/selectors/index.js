@@ -30,3 +30,10 @@ export const getFun = createSelector(
 export const getGata = createSelector(
   getAllCosts, (costs) => _.filter(costs, ['category', 'Gata'])
 )
+
+export const getTotalCost = createSelector(
+  getAllCosts, (costs) => {
+    let allCosts = _.map(costs, 'amount')
+    return _.sum(allCosts.map(Number))
+  }
+)

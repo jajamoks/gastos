@@ -1,8 +1,7 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
-import { getUtilidades, getComida, getCarro, getCasa, getPersonal, getFun, getGata } from '../selectors';
+import { getUtilidades, getComida, getCarro, getCasa, getPersonal, getFun, getGata, getTotalCost } from '../selectors';
 import TableRow from './TableRow';
 
 class CostTable extends Component {
@@ -70,7 +69,6 @@ class CostTable extends Component {
   }
 
   render() {
-    console.log(this.props.costs)
     return (
       <div>
         <div>
@@ -78,7 +76,7 @@ class CostTable extends Component {
 
         </div>
         <div>
-          <h4>Total: {this.props.costs.total}</h4>
+          <h4>Total: {this.props.total} colones</h4>
         </div>
         <Table bordered hover>
           <thead>
@@ -148,14 +146,14 @@ class CostTable extends Component {
 
 const mapStateToProps = state => {
   return {
-    costs: state.costRecords.records,
     utilidades: getUtilidades(state),
     comida: getComida(state),
     carro: getCarro(state),
     casa: getCasa(state),
     personal: getPersonal(state),
     fun: getFun(state),
-    gata: getGata(state)
+    gata: getGata(state),
+    total: getTotalCost(state)
   }
 }
 
