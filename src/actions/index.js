@@ -4,7 +4,8 @@ import {
   UPDATE_COST,
   UPDATE_CATEGORY,
   UPDATE_SUBCATEGORY,
-  UPDATE_DESCRIPTION
+  UPDATE_DESCRIPTION,
+  SELECT_MONTH
 } from './types';
 
 export const updateCost = (amount) => {
@@ -39,5 +40,12 @@ export const submitCost = ({ amount, category, subcategory, description, date })
   return (dispatch) => {
     dispatch({ type: SAVE_COST, payload: { amount, category, subcategory, description, date } });
     dispatch({ type: RESET_COST })
+  }
+}
+
+export const selectMonth = (text) => {
+  return {
+    type: SELECT_MONTH,
+    payload: text
   }
 }

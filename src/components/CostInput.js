@@ -15,7 +15,7 @@ const optionsGata = ['Veterinario', 'Comida', 'Arena', 'Juguetes']
 class CostInput extends Component {
 
   onSubmit() {
-    const now = moment().format('MMM YYYY');
+    const now = moment().format('M-YY');
     const { amount, category, subcategory, description } = this.props;
     this.props.submitCost({ amount, category, subcategory, description, date: now })
   }

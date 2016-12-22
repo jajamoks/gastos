@@ -1,7 +1,8 @@
-import { SAVE_COST } from '../actions/types'
+import { SAVE_COST, SELECT_MONTH } from '../actions/types'
 
 const INITIAL_STATE = {
-  records: []
+  records: [],
+  selectedMonth: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -12,6 +13,8 @@ export default (state = INITIAL_STATE, action) => {
           ...state.records, action.payload
         ]
       })
+    case SELECT_MONTH:
+      return { ...state, selectedMonth: action.payload }
     default:
       return state;
   }
