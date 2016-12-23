@@ -1,3 +1,6 @@
+export const EMAIL_CHANGED = 'email_changed';
+export const PASSWORD_CHANGED = 'password_changed';
+
 export const UPDATE_COST = 'update_cost';
 export const UPDATE_CATEGORY = 'update_category';
 export const UPDATE_SUBCATEGORY = 'update_subcategory';
