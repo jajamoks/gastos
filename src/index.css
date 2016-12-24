@@ -16,6 +16,11 @@ thead tr {
   text-align: center;
 }
 
+.error-text {
+  color: red;
+  font-size: 16px;
+}
+
 .left-pad td:first-child {
   padding-left: 3em;
 }

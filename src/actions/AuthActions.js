@@ -23,15 +23,17 @@ export const passwordChanged = (text) => {
 };
 
 const loginUserSuccess = (dispatch, user) => {
-  console.log('success')
   dispatch({
     type: LOGIN_USER_SUCCESS,
     payload: user
   });
 };
 
-const loginUserFail = (dispatch) => {
-  dispatch({ type: LOGIN_USER_FAIL });
+const loginUserFail = (dispatch, error) => {
+  dispatch({
+    type: LOGIN_USER_FAIL,
+    payload: error
+  });
 };
 
 export const loginUser = ({ email, password }) => {
@@ -46,7 +48,7 @@ export const loginUser = ({ email, password }) => {
       .catch(error => {
         console.log('login fails')
         console.log(error);
-        loginUserFail(dispatch);
+        loginUserFail(dispatch, error);
       })
   }
 };

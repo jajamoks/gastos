@@ -4,8 +4,23 @@ import { Grid, Row, Col, FormGroup, FormControl, ControlLabel, Button } from 're
 import { emailChanged, passwordChanged, loginUser } from '../actions'
 
 class Login extends Component {
+  renderButton() {
+    const { email, password, loading } = this.props
+
+    if (loading) {
+      return <i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    }
+    return (
+      <Button
+        bsStyle='primary'
+        onClick={() => {this.props.loginUser({ email, password })}}
+      >
+        Login
+      </Button>
+    )
+  }
+
   render() {
-    const { email, password } = this.props
     return (
       <Grid>
         <Row>
@@ -14,7 +29,7 @@ class Login extends Component {
             <h3>Gastos App</h3>
             <br/>
             <br/>
-            <p>{this.props.error}</p>
+            <p className='error-text'>{this.props.error}</p>
             <form>
               <FormGroup>
                 <ControlLabel>
@@ -36,12 +51,7 @@ class Login extends Component {
                   onChange={(e) => {this.props.passwordChanged(e.target.value)}}
                 />
               </FormGroup>
-              <Button
-                bsStyle='primary'
-                onClick={() => {this.props.loginUser({ email, password })}}
-              >
-                Login
-              </Button>
+              {this.renderButton()}
             </form>
           </Col>
           <Col lg={4} sm={3} />
