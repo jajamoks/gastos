@@ -8,14 +8,14 @@ class Login extends Component {
     const { email, password, loading } = this.props
 
     if (loading) {
-      return <i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+      return <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
     }
     return (
       <Button
         bsStyle='primary'
         onClick={() => {this.props.loginUser({ email, password })}}
       >
-        Login
+        Iniciar Sesión
       </Button>
     )
   }
@@ -24,8 +24,8 @@ class Login extends Component {
     return (
       <Grid>
         <Row>
-          <Col lg={4} sm={3} />
-          <Col lg={4} sm={6} >
+          <Col sm={4} />
+          <Col sm={4} >
             <h3>Gastos App</h3>
             <br/>
             <br/>
@@ -33,7 +33,7 @@ class Login extends Component {
             <form>
               <FormGroup>
                 <ControlLabel>
-                  Email
+                  Correo electrónico
                 </ControlLabel>
                 <FormControl
                   type='text'
@@ -43,7 +43,7 @@ class Login extends Component {
               </FormGroup>
               <FormGroup>
                 <ControlLabel>
-                  Clave
+                  Contraseña
                 </ControlLabel>
                 <FormControl
                   type='password'
@@ -54,7 +54,7 @@ class Login extends Component {
               {this.renderButton()}
             </form>
           </Col>
-          <Col lg={4} sm={3} />
+          <Col sm={4} />
         </Row>
       </Grid>
     );

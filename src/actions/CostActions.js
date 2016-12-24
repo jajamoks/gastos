@@ -5,7 +5,8 @@ import {
   UPDATE_COST,
   UPDATE_CATEGORY,
   UPDATE_SUBCATEGORY,
-  UPDATE_DESCRIPTION
+  UPDATE_DESCRIPTION,
+  UPDATE_COST_MONTH
 } from './types';
 
 export const updateCost = (amount) => {
@@ -32,6 +33,13 @@ export const updateSubcategory = (text) => {
 export const updateDescription = (text) => {
   return {
     type: UPDATE_DESCRIPTION,
+    payload: text
+  }
+}
+
+export const updateCostMonth = (text) => {
+  return {
+    type: UPDATE_COST_MONTH,
     payload: text
   }
 }

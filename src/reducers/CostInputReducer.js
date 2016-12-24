@@ -3,6 +3,7 @@ import {
   UPDATE_CATEGORY,
   UPDATE_SUBCATEGORY,
   UPDATE_DESCRIPTION,
+  UPDATE_COST_MONTH,
   RESET_COST
 } from '../actions/types';
 
@@ -11,6 +12,7 @@ const INITIAL_STATE = {
   category: '',
   subcategory: '',
   description: '',
+  cost_month: '',
   currency: 'colones'
 }
 
@@ -25,6 +27,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, subcategory: action.payload }
     case UPDATE_DESCRIPTION:
       return { ...state, description: action.payload }
+    case UPDATE_COST_MONTH:
+      return { ...state, cost_month: action.payload }
     case RESET_COST:
       return INITIAL_STATE;
     default:

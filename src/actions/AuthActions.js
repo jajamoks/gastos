@@ -46,8 +46,6 @@ export const loginUser = ({ email, password }) => {
         browserHistory.push('/gastos');
       })
       .catch(error => {
-        console.log('login fails')
-        console.log(error);
         loginUserFail(dispatch, error);
       })
   }

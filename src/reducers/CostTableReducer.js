@@ -1,11 +1,9 @@
-import moment from 'moment';
-import { SAVE_COST, MONTH_SELECT } from '../actions/types'
-
-moment.locale('es')
+import {
+  SAVE_COST
+} from '../actions/types'
 
 const INITIAL_STATE = {
-  records: [],
-  selectedMonth: moment().format('MMMM-YY')
+  records: []
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -16,8 +14,6 @@ export default (state = INITIAL_STATE, action) => {
           ...state.records, action.payload
         ]
       })
-    case MONTH_SELECT:
-      return { ...state, selectedMonth: action.payload }
     default:
       return state;
   }
