@@ -1,8 +1,8 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ButtonGroup, Button, Modal, FormGroup, FormControl } from 'react-bootstrap';
-import { monthSelect, updateNewMonth, updateNewYear, monthAdd } from '../actions';
-import { getAvailableMonths } from '../selectors';
+import { monthSelect, updateNewMonth, updateNewYear, monthAdd, monthsFetch } from '../actions';
 
 class MonthSelector extends Component {
   constructor() {
@@ -11,6 +11,10 @@ class MonthSelector extends Component {
     this.state = {
       showModal: false
     };
+  }
+
+  componentWillMount() {
+    this.props.monthsFetch();
   }
 
   close() {
@@ -22,9 +26,10 @@ class MonthSelector extends Component {
   }
 
   renderMonthList() {
-    const months = this.props.months.map((item, i) => {
+    console.log(this.props.availableMonths)
+    const months = this.props.availableMonths.map((item, i) => {
       return (
-        <Button key={i} onClick={() => {this.props.monthSelect(item)} } >
+        <Button key={i} onClick={() => {this.props.monthSelect(item)} } className='month-buttons'>
           {item}
         </Button>
       )
@@ -36,9 +41,6 @@ class MonthSelector extends Component {
     const { newMonth, newYear } = this.props
     return (
       <div>
-        <Button bsStyle='success' onClick={() => this.open()} >
-          <i className='fa fa-plus'></i>
-        </Button>
         <Modal bsSize='small' show={this.state.showModal} onHide={() => this.close()}>
           <Modal.Header closeButton>
             <Modal.Title>Create a new month</Modal.Title>
@@ -71,6 +73,7 @@ class MonthSelector extends Component {
                   value={this.props.newYear}
                   onChange={(e) => this.props.updateNewYear(e.target.value)}>
                   <option value="">-Select Year-</option>
+                  <option value="2016">2016</option>
                   <option value="2017">2017</option>
                   <option value="2018">2018</option>
                   <option value="2019">2019</option>
@@ -83,7 +86,10 @@ class MonthSelector extends Component {
             <Button bsStyle='success' onClick={() => this.props.monthAdd({ newMonth, newYear })}>Guardar</Button>
           </Modal.Footer>
         </Modal>
-        <ButtonGroup>
+        <ButtonGroup vertical>
+          <Button bsStyle='success' onClick={() => this.open()} >
+            Add Month <i className='fa fa-plus'></i>
+          </Button>
           {this.renderMonthList()}
         </ButtonGroup>
       </div>
@@ -92,11 +98,12 @@ class MonthSelector extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const orderedMonths = _.reverse(_.map(state.month.availableMonths))
   return {
-    months: getAvailableMonths(state),
+    availableMonths: orderedMonths,
     newMonth: state.month.newMonth,
-    newYear: state.month.newYear
+    newYear: state.month.newYear,
   }
 };
 
-export default connect(mapStateToProps, { monthSelect, updateNewMonth, updateNewYear, monthAdd })(MonthSelector);
+export default connect(mapStateToProps, { monthSelect, updateNewMonth, updateNewYear, monthAdd, monthsFetch })(MonthSelector);

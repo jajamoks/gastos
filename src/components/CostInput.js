@@ -17,7 +17,7 @@ moment.locale('es')
 class CostInput extends Component {
 
   onSubmit() {
-    const now = moment().format('MMMM-YY')
+    const now = moment().format('MMMM-YYYY')
     const { amount, category, subcategory, description } = this.props;
     this.props.submitCost({ amount, category, subcategory, description, date: now })
   }

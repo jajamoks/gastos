@@ -1,4 +1,3 @@
-import firebase from 'firebase';
 import {
   RESET_COST,
   SAVE_COST,

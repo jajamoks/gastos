@@ -30,6 +30,10 @@ thead tr {
   color: #33aa61;
 }
 
+.month-buttons {
+  text-align: left;
+}
+
 .total-display {
   float: right;
   padding-bottom: 2em;
