@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Row, Col, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
-import { emailChanged, passwordChanged } from '../actions'
+import { emailChanged, passwordChanged, loginUser } from '../actions'
 
 class Login extends Component {
   render() {
+    const { email, password } = this.props
     return (
       <Grid>
         <Row>
@@ -13,6 +14,7 @@ class Login extends Component {
             <h3>Gastos App</h3>
             <br/>
             <br/>
+            <p>{this.props.error}</p>
             <form>
               <FormGroup>
                 <ControlLabel>
@@ -34,7 +36,10 @@ class Login extends Component {
                   onChange={(e) => {this.props.passwordChanged(e.target.value)}}
                 />
               </FormGroup>
-              <Button>
+              <Button
+                bsStyle='primary'
+                onClick={() => {this.props.loginUser({ email, password })}}
+              >
                 Login
               </Button>
             </form>
@@ -49,8 +54,10 @@ class Login extends Component {
 const mapStateToProps = (state) => {
   return {
     email: state.auth.email,
-    password: state.auth.password
-  }
-}
+    password: state.auth.password,
+    loading: state.auth.loading,
+    error: state.auth.error
+  };
+};
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged })(Login);
+export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(Login);
