@@ -26,7 +26,6 @@ class MonthSelector extends Component {
   }
 
   renderMonthList() {
-    console.log(this.props.availableMonths)
     const months = this.props.availableMonths.map((item, i) => {
       return (
         <Button key={i} onClick={() => {this.props.monthSelect(item)} } className='month-buttons'>

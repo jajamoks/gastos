@@ -1,6 +1,7 @@
+import firebase from 'firebase';
 import {
-  RESET_COST,
-  SAVE_COST,
+  COST_CREATE,
+  COSTS_FETCH_SUCCESS,
   UPDATE_COST,
   UPDATE_CATEGORY,
   UPDATE_SUBCATEGORY,
@@ -43,9 +44,21 @@ export const updateCostMonth = (text) => {
   }
 }
 
-export const submitCost = ({ amount, category, subcategory, description, date }) => {
+export const costCreate = ({ amount, category, subcategory, description, date }) => {
   return (dispatch) => {
-    dispatch({ type: SAVE_COST, payload: { amount, category, subcategory, description, date } });
-    dispatch({ type: RESET_COST })
+    firebase.database().ref(`/${date}/`)
+      .push({ amount, category, subcategory, description })
+      .then(() => {
+        dispatch({ type: COST_CREATE });
+      })
+  }
+}
+
+export const costsFetch = ({ selectedMonth }) => {
+  return (dispatch) => {
+    firebase.database().ref(`/${selectedMonth}/`)
+      .on('value', snapshot => {
+        dispatch({ type: COSTS_FETCH_SUCCESS, payload: snapshot.val() });
+      });
   }
 }

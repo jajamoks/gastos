@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
+import { costsFetch } from '../actions';
 import { getUtilidades, getComida, getCarro, getCasa, getPersonal, getFun, getGata, getTotalCost } from '../selectors';
 import TableRow from './TableRow';
 
 class CostTable extends Component {
+  componentWillMount() {
+    const { selectedMonth } = this.props
+    this.props.costsFetch({ selectedMonth });
+  }
+
   renderUtilidades() {
     let rows = this.props.utilidades.map((item, i) => {
       return(
@@ -153,8 +159,8 @@ const mapStateToProps = state => {
     fun: getFun(state),
     gata: getGata(state),
     total: getTotalCost(state),
-    selectedMonth: state.costRecords.selectedMonth
+    selectedMonth: state.month.selectedMonth
   }
 }
 
-export default connect(mapStateToProps, {})(CostTable);
+export default connect(mapStateToProps, { costsFetch })(CostTable);

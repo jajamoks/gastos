@@ -27,7 +27,6 @@ export default (state = INITIAL_STATE, action) => {
     case UPDATE_NEW_YEAR:
       return { ...state, newYear: action.payload }
     case MONTHS_FETCH_SUCCESS:
-      console.log(action.payload)
       return { ...state, availableMonths: action.payload }
     default:
       return state;

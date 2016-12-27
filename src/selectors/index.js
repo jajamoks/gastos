@@ -1,19 +1,9 @@
 import _ from 'lodash'
 import { createSelector } from 'reselect';
 
-const getCosts = (state) => state.costRecords.records
-
 const getCostsForMonth = (state) => {
-  return _.filter(state.costRecords.records, ['date', state.costRecords.selectedMonth])
+  return state.costs
 }
-
-export const getAvailableMonths = createSelector(
-  getCosts, (costs) => {
-    let allDates = _.map(costs, 'date')
-    console.log(_.uniq(allDates));
-    return _.uniq(allDates)
-  }
-)
 
 export const getUtilidades = createSelector(
   getCostsForMonth, (costs) => _.filter(costs, ['category', 'Utilidades'])

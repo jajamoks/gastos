@@ -1,10 +1,10 @@
 import {
+  COST_CREATE,
   UPDATE_COST,
   UPDATE_CATEGORY,
   UPDATE_SUBCATEGORY,
   UPDATE_DESCRIPTION,
-  UPDATE_COST_MONTH,
-  RESET_COST
+  UPDATE_COST_MONTH
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -29,7 +29,7 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, description: action.payload }
     case UPDATE_COST_MONTH:
       return { ...state, cost_month: action.payload }
-    case RESET_COST:
+    case COST_CREATE:
       return INITIAL_STATE;
     default:
       return state;

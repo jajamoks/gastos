@@ -2,7 +2,7 @@ import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, FormControl, ControlLabel, InputGroup } from 'react-bootstrap';
-import { updateCost, updateCategory, updateSubcategory, updateDescription, submitCost } from '../actions'
+import { updateCost, updateCategory, updateSubcategory, updateDescription, costCreate } from '../actions'
 
 const optionsUtil = ['Agua', 'Electridad', 'Telefono', 'Internet y Cable', 'Gas', 'Impuestos']
 const optionsComida = ['Compras', 'Restaurante']
@@ -19,7 +19,7 @@ class CostInput extends Component {
   onSubmit() {
     const now = moment().format('MMMM-YYYY')
     const { amount, category, subcategory, description } = this.props;
-    this.props.submitCost({ amount, category, subcategory, description, date: now })
+    this.props.costCreate({ amount, category, subcategory, description, date: now })
   }
 
   onCostChange(e) {
@@ -166,4 +166,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { updateCost, updateCategory, updateSubcategory, updateDescription, submitCost })(CostInput);
+export default connect(mapStateToProps, { updateCost, updateCategory, updateSubcategory, updateDescription, costCreate })(CostInput);

@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import {
+  COSTS_FETCH_SUCCESS,
   MONTH_SELECT,
   MONTH_ADD,
   MONTH_ADD_SUCCESS,
@@ -9,10 +10,13 @@ import {
   MONTHS_FETCH_SUCCESS
 } from './types';
 
-export const monthSelect = (text) => {
-  return {
-    type: MONTH_SELECT,
-    payload: text
+export const monthSelect = (month) => {
+  return (dispatch) => {
+    dispatch({ type: MONTH_SELECT, payload: month });
+    firebase.database().ref(`/${month}/`)
+      .on('value', snapshot => {
+        dispatch({ type: COSTS_FETCH_SUCCESS, payload: snapshot.val() });
+      });
   }
 }
 
@@ -32,7 +36,6 @@ export const updateNewYear = (text) => {
 
 export const monthAdd = ({ newMonth, newYear }) => {
   const combinedDate = newMonth + '-' + newYear
-  console.log(combinedDate)
   return (dispatch) => {
     dispatch({ type: MONTH_ADD })
 
@@ -42,7 +45,6 @@ export const monthAdd = ({ newMonth, newYear }) => {
         dispatch({ type: MONTH_ADD_SUCCESS })
       })
       .catch(error => {
-        console.log(error);
         dispatch({ type: MONTH_ADD_FAILURE })
       });
   };
