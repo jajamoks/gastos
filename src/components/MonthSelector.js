@@ -26,14 +26,14 @@ class MonthSelector extends Component {
   }
 
   renderMonthList() {
-    const months = this.props.availableMonths.map((item, i) => {
+    const monthList = this.props.availableMonths.map((item, i) => {
       return (
         <Button key={i} onClick={() => {this.props.monthSelect(item)} } className='month-buttons'>
           {item}
         </Button>
       )
     })
-    return months
+    return monthsList
   }
 
   render() {

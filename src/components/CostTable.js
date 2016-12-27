@@ -87,7 +87,7 @@ class CostTable extends Component {
         <div className='total-display'>
           <h4>Total: <NumberFormat value={this.props.total} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /> colones</h4>
         </div>
-        <Table>
+        <Table id='CostTable'>
           <thead>
             <tr>
               <th>Categorías</th>

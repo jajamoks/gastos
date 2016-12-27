@@ -8,15 +8,17 @@ class Main extends Component {
   render() {
     return (
       <Grid>
-        <h3><b>Gastos</b></h3>
+        <h3><b>Gastos App</b></h3>
         <br/>
         <Row>
-          <Col lg={2} className='center'>
+          <Col lg={1} className='center'>
             <MonthSelector />
           </Col>
-          <Col lg={8}>
+          <Col lg={1} />
+          <Col lg={7} id='CostTableContainer'>
             <CostTable />
           </Col>
+          <Col lg={1} />
           <Col lg={2}>
             <CostInput />
           </Col>

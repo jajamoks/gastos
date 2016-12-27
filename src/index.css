@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: Helvetica;
 }
 
 h3 {
@@ -10,6 +10,10 @@ h3 {
 
 thead tr {
   background-color: #ccc;
+}
+
+#CostTable {
+  font-size: 12px;
 }
 
 .center {
