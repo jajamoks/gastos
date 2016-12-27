@@ -34,8 +34,12 @@ thead tr {
   color: #33aa61;
 }
 
-.month-buttons {
+.btn-month {
   text-align: right;
+}
+
+.btn-active {
+  background-color: #ccc;
 }
 
 .total-display {

@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ClassNames from 'classnames';
 import { ButtonGroup, Button, Modal, FormGroup, FormControl } from 'react-bootstrap';
 import { monthSelect, updateNewMonth, updateNewYear, monthAdd, monthsFetch } from '../actions';
 
@@ -26,14 +27,19 @@ class MonthSelector extends Component {
   }
 
   renderMonthList() {
+
     const monthList = this.props.availableMonths.map((item, i) => {
+      const btnClass = ClassNames({
+        'btn-month': true,
+        'btn-active': item === this.props.selectedMonth
+      });
       return (
-        <Button key={i} onClick={() => {this.props.monthSelect(item)} } className='month-buttons'>
+        <Button key={i} onClick={() => {this.props.monthSelect(item)} } className={btnClass}>
           {item}
         </Button>
       )
     })
-    return monthsList
+    return monthList
   }
 
   render() {
@@ -102,6 +108,7 @@ const mapStateToProps = (state) => {
     availableMonths: orderedMonths,
     newMonth: state.month.newMonth,
     newYear: state.month.newYear,
+    selectedMonth: state.month.selectedMonth
   }
 };
 
