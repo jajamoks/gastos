@@ -83,13 +83,13 @@ class CostTable extends Component {
         <div className='total-display'>
           <h4>Total: {this.props.total} colones</h4>
         </div>
-        <Table bordered hover>
+        <Table>
           <thead>
             <tr>
               <th>Categorías</th>
-              <th className='center'>Costo</th>
+              <th className='center'>Subcategoría</th>
               <th className='center'>Descripción</th>
-              <th className='center'>Fecha</th>
+              <th className='center'>Costo</th>
             </tr>
           </thead>
           <tbody>

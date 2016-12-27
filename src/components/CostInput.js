@@ -17,9 +17,8 @@ moment.locale('es')
 class CostInput extends Component {
 
   onSubmit() {
-    const now = moment().format('MMMM-YYYY')
-    const { amount, category, subcategory, description } = this.props;
-    this.props.costCreate({ amount, category, subcategory, description, date: now })
+    const { amount, category, subcategory, description, selectedMonth } = this.props;
+    this.props.costCreate({ amount, category, subcategory, description, date: selectedMonth })
   }
 
   onCostChange(e) {
@@ -162,7 +161,8 @@ const mapStateToProps = state => {
     amount: state.cost.amount,
     category: state.cost.category,
     subcategory: state.cost.subcategory,
-    description: state.cost.description
+    description: state.cost.description,
+    selectedMonth: state.month.selectedMonth
   }
 }
 

@@ -3,10 +3,10 @@ import React from 'react';
 const TableRow = ({ item }) => {
   return (
     <tr className='left-pad'>
-      <td>{item.subcategory}</td>
-      <td style={{'textAlign': 'right'}}>{item.amount}</td>
+      <td></td>
+      <td style={{'textAlign': 'center'}}>{item.subcategory}</td>
       <td>{item.description}</td>
-      <td>{item.date}</td>
+      <td style={{'textAlign': 'right'}}>{item.amount}</td>
     </tr>
   )
 }
