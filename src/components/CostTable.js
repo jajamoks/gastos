@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
+import NumberFormat from 'react-number-format';
 import { costsFetch } from '../actions';
 import { getUtilidades, getComida, getCarro, getCasa, getPersonal, getFun, getGata, getTotalCost } from '../selectors';
 import TableRow from './TableRow';
@@ -75,13 +76,16 @@ class CostTable extends Component {
   }
 
   render() {
+    const parts = this.props.selectedMonth.split('-')
+    const separatedMonth = parts[0].toUpperCase();
+    const separatedYear = parts[1]
     return (
       <div>
         <div>
-          <h4 className='month-header'>{this.props.selectedMonth}</h4>
+          <h4 className='month-header'>{separatedMonth + ' ' + separatedYear}</h4>
         </div>
         <div className='total-display'>
-          <h4>Total: {this.props.total} colones</h4>
+          <h4>Total: <NumberFormat value={this.props.total} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /> colones</h4>
         </div>
         <Table>
           <thead>

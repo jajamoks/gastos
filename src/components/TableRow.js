@@ -1,4 +1,5 @@
 import React from 'react';
+import NumberFormat from 'react-number-format';
 
 const TableRow = ({ item }) => {
   return (
@@ -6,7 +7,7 @@ const TableRow = ({ item }) => {
       <td></td>
       <td style={{'textAlign': 'center'}}>{item.subcategory}</td>
       <td>{item.description}</td>
-      <td style={{'textAlign': 'right'}}>{item.amount}</td>
+      <td style={{'textAlign': 'right'}}><NumberFormat value={item.amount} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></td>
     </tr>
   )
 }
