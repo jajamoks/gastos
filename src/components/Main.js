@@ -11,7 +11,7 @@ class Main extends Component {
         <h3><b>Gastos App</b></h3>
         <br/>
         <Row>
-          <Col lg={1} className='center'>
+          <Col lg={1} id='MonthSelectorContainer' className='center'>
             <MonthSelector />
           </Col>
           <Col lg={1} />

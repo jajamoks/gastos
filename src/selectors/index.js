@@ -2,7 +2,10 @@ import _ from 'lodash'
 import { createSelector } from 'reselect';
 
 const getCostsForMonth = (state) => {
-  return state.costs
+  const costs = _.map(state.costs, (val, uid) => {
+    return { ...val, uid };
+  })
+  return costs
 }
 
 export const getUtilidades = createSelector(

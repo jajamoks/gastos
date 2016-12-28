@@ -98,7 +98,7 @@ class CostInput extends Component {
 
   render() {
     return (
-      <Form>
+      <Form id='CostInputForm'>
         <FormGroup controlId="formControlsSelect">
           <ControlLabel>Categoría</ControlLabel>
           <FormControl
