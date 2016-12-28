@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'react-bootstrap';
+import { Table, Modal, Button } from 'react-bootstrap';
 import NumberFormat from 'react-number-format';
-import { costsFetch } from '../actions';
+import { costsFetch, costEdit } from '../actions';
 import { getUtilidades, getComida, getCarro, getCasa, getPersonal, getFun, getGata, getTotalCost } from '../selectors';
+import CostForm from './CostForm';
 import TableRow from './TableRow';
 
 class CostTable extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      showModal: false
+    };
+  }
+
   componentWillMount() {
     const { selectedMonth } = this.props
     this.props.costsFetch({ selectedMonth });
@@ -15,7 +24,7 @@ class CostTable extends Component {
   renderUtilidades() {
     let rows = this.props.utilidades.map((item, i) => {
       return(
-        <TableRow key={i} item={item} />
+        <TableRow key={i} item={item} onClick={() => this.setState({ showModal: true })} />
       )
     })
     return rows;
@@ -88,18 +97,20 @@ class CostTable extends Component {
           <h4><NumberFormat value={Math.round(this.props.total / 550)} displayType={'text'} thousandSeparator={true} prefix={'$ '} /></h4>
           <h4><NumberFormat value={this.props.total} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></h4>
         </div>
-        <Table id='CostTable'>
+        <Table id='CostTable' bordered>
           <thead>
             <tr>
-              <th>Categorías</th>
+              <th className='center'>Categorías</th>
               <th className='center'>Subcategoría</th>
               <th className='center'>Descripción</th>
               <th className='center'>Costo</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th>UTILIDADES</th>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -110,10 +121,12 @@ class CostTable extends Component {
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
             </tr>
             {this.renderComida()}
             <tr>
               <th>CARRO</th>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -124,10 +137,12 @@ class CostTable extends Component {
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
             </tr>
             {this.renderCasa()}
             <tr>
               <th>PERSONAL</th>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -138,6 +153,7 @@ class CostTable extends Component {
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
             </tr>
             {this.renderFun()}
             <tr>
@@ -145,10 +161,22 @@ class CostTable extends Component {
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
             </tr>
             {this.renderGata()}
           </tbody>
         </Table>
+        <Modal bsSize='small' show={this.state.showModal} onHide={() => this.setState({ showModal: false })}>
+          <Modal.Header closeButton>
+            <Modal.Title>Edit Cost</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <CostForm />
+          </Modal.Body>
+          <Modal.Footer className='center'>
+            <Button bsStyle='warning' onClick={() => this.props.costEdit()}>Guardar Cambios</Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }
@@ -168,4 +196,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { costsFetch })(CostTable);
+export default connect(mapStateToProps, { costsFetch, costEdit })(CostTable);

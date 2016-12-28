@@ -62,3 +62,10 @@ export const costsFetch = ({ selectedMonth }) => {
       });
   }
 }
+
+export const costEdit = ({ selectedMonth, amount, category, subcategory, description, uid }) => {
+  return(dispatch) => {
+    firebase.database().ref(`/${selectedMonth}/${uid}`)
+      .set({ amount, category, subcategory, description })
+  }
+}
