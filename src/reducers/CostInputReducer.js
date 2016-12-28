@@ -1,6 +1,7 @@
 import {
   COST_CREATE,
   COST_EDIT_LOAD,
+  COST_EDIT_CANCEL,
   COST_EDIT_SUCCESS,
   UPDATE_COST,
   UPDATE_CATEGORY,
@@ -38,6 +39,8 @@ export default (state = INITIAL_STATE, action) => {
         category: action.payload.category,
         subcategory: action.payload.subcategory,
         description: action.payload.description }
+    case COST_EDIT_CANCEL:
+      return INITIAL_STATE;
     case COST_EDIT_SUCCESS:
       return INITIAL_STATE;
     default:

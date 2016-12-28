@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table, Modal, Button } from 'react-bootstrap';
 import NumberFormat from 'react-number-format';
-import { costsFetch, costEdit, loadCost } from '../actions';
+import { costsFetch, costEdit, loadCost, cancelEdit } from '../actions';
 import { getUtilidades, getComida, getCarro, getCasa, getPersonal, getFun, getGata, getTotalCost } from '../selectors';
 import CostForm from './CostForm';
 import TableRow from './TableRow';
@@ -36,7 +36,7 @@ class CostTable extends Component {
   renderUtilidades() {
     let rows = this.props.utilidades.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onClick={() => this.onEditClick(item)} />
+        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} />
       )
     })
     return rows;
@@ -45,7 +45,7 @@ class CostTable extends Component {
   renderComida() {
     let rows = this.props.comida.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onClick={() => this.onEditClick(item)} />
+        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} />
       )
     })
     return rows;
@@ -54,7 +54,7 @@ class CostTable extends Component {
   renderCarro() {
     let rows = this.props.carro.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onClick={() => this.onEditClick(item)} />
+        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} />
       )
     })
     return rows;
@@ -63,7 +63,7 @@ class CostTable extends Component {
   renderCasa() {
     let rows = this.props.casa.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onClick={() => this.onEditClick(item)} />
+        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} />
       )
     })
     return rows;
@@ -72,7 +72,7 @@ class CostTable extends Component {
   renderPersonal() {
     let rows = this.props.personal.map((item, i) => {
       return (
-        <TableRow key={i} item={item} onClick={() => this.onEditClick(item)} />
+        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} />
       );
     })
     return rows;
@@ -81,7 +81,7 @@ class CostTable extends Component {
   renderFun() {
     let rows = this.props.fun.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onClick={() => this.onEditClick(item)} />
+        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} />
       )
     })
     return rows;
@@ -90,7 +90,7 @@ class CostTable extends Component {
   renderGata() {
     let rows = this.props.gata.map((item, i) => {
       return(
-        <TableRow key={i} item={item} />
+        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} />
       )
     })
     return rows;
@@ -179,7 +179,10 @@ class CostTable extends Component {
             {this.renderGata()}
           </tbody>
         </Table>
-        <Modal bsSize='small' show={this.state.showModal} onHide={() => this.setState({ showModal: false })}>
+        <Modal bsSize='small' show={this.state.showModal} onHide={() => {
+          this.setState({ showModal: false });
+          this.props.cancelEdit();
+        }}>
           <Modal.Header closeButton>
             <Modal.Title>Edit Cost</Modal.Title>
           </Modal.Header>
@@ -213,4 +216,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { costsFetch, costEdit, loadCost })(CostTable);
+export default connect(mapStateToProps, { costsFetch, costEdit, loadCost, cancelEdit })(CostTable);

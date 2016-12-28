@@ -2,6 +2,7 @@ import firebase from 'firebase';
 import {
   COST_CREATE,
   COST_EDIT_LOAD,
+  COST_EDIT_CANCEL,
   COST_EDIT_SUCCESS,
   COSTS_FETCH_SUCCESS,
   UPDATE_COST,
@@ -74,6 +75,10 @@ export const loadCost = ({ amount, category, subcategory, description }) => {
   }
 };
 
+export const cancelEdit = () => {
+  return { type: COST_EDIT_CANCEL };
+}
+
 export const costEdit = ({ selectedMonth, amount, category, subcategory, description, uid }) => {
   return(dispatch) => {
 
@@ -82,7 +87,5 @@ export const costEdit = ({ selectedMonth, amount, category, subcategory, descrip
       .then(() => {
         dispatch({ type: COST_EDIT_SUCCESS });
       })
-
-    // dispatch edit success ( reset form)
   }
 }

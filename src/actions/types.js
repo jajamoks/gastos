@@ -11,6 +11,7 @@ export const UPDATE_DESCRIPTION = 'update_description';
 export const UPDATE_COST_MONTH = 'update_cost_month';
 export const COST_CREATE = 'cost_create';
 export const COST_EDIT_LOAD = 'cost_edit_load';
+export const COST_EDIT_CANCEL = 'cost_edit_cancel';
 export const COST_EDIT_SUCCESS = 'cost_edit_success';
 export const COSTS_FETCH_SUCCESS = 'costs_fetch_success';
 
