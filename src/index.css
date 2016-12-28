@@ -13,12 +13,16 @@ thead tr {
 }
 
 #MonthSelectorContainer {
-  padding-top: 7em;
+  padding-top: 10em;
 }
 
 #CostTable {
   font-size: 12px;
   border-bottom: 1px solid #ddd;
+}
+
+#CostInputContainer {
+  padding-top: 10em;
 }
 
 .center {

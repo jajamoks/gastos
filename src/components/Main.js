@@ -19,7 +19,7 @@ class Main extends Component {
             <CostTable />
           </Col>
           <Col lg={1} />
-          <Col lg={2}>
+          <Col lg={2} id='CostInputContainer'>
             <CostInput />
           </Col>
         </Row>

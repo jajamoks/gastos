@@ -184,7 +184,7 @@ class CostTable extends Component {
           this.props.cancelEdit();
         }}>
           <Modal.Header closeButton>
-            <Modal.Title>Edit Cost</Modal.Title>
+            <Modal.Title>Editar Costo</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <CostForm />
