@@ -4,10 +4,6 @@ body {
   font-family: Helvetica;
 }
 
-h3 {
-  text-align: center;
-}
-
 thead tr {
   background-color: #ccc;
 }
@@ -38,9 +34,12 @@ thead tr {
   padding-left: 3em;
 }
 
-.month-header {
+#month-header {
   font-weight: bold;
   color: #33aa61;
+  font-family: 'Lucida Console', monospace;
+  font-size: 24px;
+  padding-left: 2em;
 }
 
 .btn-month {
@@ -55,4 +54,17 @@ thead tr {
   float: right;
   text-align: right;
   padding-bottom: 2em;
+}
+
+#icon-edit {
+  padding-left: 2px;
+}
+
+#icon-delete {
+  margin-left: 2em;
+}
+
+.fa {
+  color: silver;
+  cursor: pointer;
 }

@@ -8,9 +8,9 @@ const TableRow = ({ item, onEdit, onDelete }) => {
       <td>{item.subcategory}</td>
       <td>{item.description}</td>
       <td style={{'textAlign': 'right'}}><NumberFormat value={item.amount} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></td>
-      <td>
-        <a onClick={onEdit}><i className='fa fa-pencil-square fa-lg'></i></a>
-        <a onClick={onDelete}></a>
+      <td className='center'>
+        <a onClick={onEdit} id='icon-edit'><i className='fa fa-pencil-square fa-lg'></i></a>
+        <a onClick={onDelete} id='icon-delete'><i className='fa fa-trash fa-lg'></i></a>
       </td>
     </tr>
   )
