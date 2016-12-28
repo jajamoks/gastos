@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table, Modal, Button } from 'react-bootstrap';
 import NumberFormat from 'react-number-format';
-import { costsFetch, costEdit } from '../actions';
+import { costsFetch, costEdit, loadCost } from '../actions';
 import { getUtilidades, getComida, getCarro, getCasa, getPersonal, getFun, getGata, getTotalCost } from '../selectors';
 import CostForm from './CostForm';
 import TableRow from './TableRow';
@@ -12,7 +12,8 @@ class CostTable extends Component {
     super();
 
     this.state = {
-      showModal: false
+      showModal: false,
+      selectedItem: ''
     };
   }
 
@@ -21,10 +22,21 @@ class CostTable extends Component {
     this.props.costsFetch({ selectedMonth });
   }
 
+  onButtonSubmit() {
+    const { selectedMonth, amount, category, subcategory, description } = this.props;
+    this.props.costEdit({ selectedMonth, amount, category, subcategory, description, uid: this.state.selectedItem });
+    this.setState({ showModal: false });
+  }
+
+  onEditClick(item) {
+    this.setState({ showModal: true, selectedItem: item.uid });
+    this.props.loadCost({ amount: item.amount, category: item.category, subcategory: item.subcategory, description: item.description })
+  }
+
   renderUtilidades() {
     let rows = this.props.utilidades.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onClick={() => this.setState({ showModal: true })} />
+        <TableRow key={i} item={item} onClick={() => this.onEditClick(item)} />
       )
     })
     return rows;
@@ -33,7 +45,7 @@ class CostTable extends Component {
   renderComida() {
     let rows = this.props.comida.map((item, i) => {
       return(
-        <TableRow key={i} item={item} />
+        <TableRow key={i} item={item} onClick={() => this.onEditClick(item)} />
       )
     })
     return rows;
@@ -42,7 +54,7 @@ class CostTable extends Component {
   renderCarro() {
     let rows = this.props.carro.map((item, i) => {
       return(
-        <TableRow key={i} item={item} />
+        <TableRow key={i} item={item} onClick={() => this.onEditClick(item)} />
       )
     })
     return rows;
@@ -51,7 +63,7 @@ class CostTable extends Component {
   renderCasa() {
     let rows = this.props.casa.map((item, i) => {
       return(
-        <TableRow key={i} item={item} />
+        <TableRow key={i} item={item} onClick={() => this.onEditClick(item)} />
       )
     })
     return rows;
@@ -60,7 +72,7 @@ class CostTable extends Component {
   renderPersonal() {
     let rows = this.props.personal.map((item, i) => {
       return (
-        <TableRow key={i} item={item} />
+        <TableRow key={i} item={item} onClick={() => this.onEditClick(item)} />
       );
     })
     return rows;
@@ -69,7 +81,7 @@ class CostTable extends Component {
   renderFun() {
     let rows = this.props.fun.map((item, i) => {
       return(
-        <TableRow key={i} item={item} />
+        <TableRow key={i} item={item} onClick={() => this.onEditClick(item)} />
       )
     })
     return rows;
@@ -85,6 +97,7 @@ class CostTable extends Component {
   }
 
   render() {
+    console.log(this.state.selectedItem)
     const parts = this.props.selectedMonth.split('-')
     const separatedMonth = parts[0].toUpperCase();
     const separatedYear = parts[1]
@@ -174,7 +187,7 @@ class CostTable extends Component {
             <CostForm />
           </Modal.Body>
           <Modal.Footer className='center'>
-            <Button bsStyle='warning' onClick={() => this.props.costEdit()}>Guardar Cambios</Button>
+            <Button bsStyle='warning' onClick={() => this.onButtonSubmit()}>Guardar Cambios</Button>
           </Modal.Footer>
         </Modal>
       </div>
@@ -192,8 +205,12 @@ const mapStateToProps = state => {
     fun: getFun(state),
     gata: getGata(state),
     total: getTotalCost(state),
-    selectedMonth: state.month.selectedMonth
+    selectedMonth: state.month.selectedMonth,
+    amount: state.cost.amount,
+    category: state.cost.category,
+    subcategory: state.cost.subcategory,
+    description: state.cost.description
   }
 }
 
-export default connect(mapStateToProps, { costsFetch, costEdit })(CostTable);
+export default connect(mapStateToProps, { costsFetch, costEdit, loadCost })(CostTable);

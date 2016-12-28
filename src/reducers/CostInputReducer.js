@@ -1,5 +1,7 @@
 import {
   COST_CREATE,
+  COST_EDIT_LOAD,
+  COST_EDIT_SUCCESS,
   UPDATE_COST,
   UPDATE_CATEGORY,
   UPDATE_SUBCATEGORY,
@@ -12,8 +14,7 @@ const INITIAL_STATE = {
   category: '',
   subcategory: '',
   description: '',
-  cost_month: '',
-  currency: 'colones'
+  cost_month: ''
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -30,6 +31,14 @@ export default (state = INITIAL_STATE, action) => {
     case UPDATE_COST_MONTH:
       return { ...state, cost_month: action.payload }
     case COST_CREATE:
+      return INITIAL_STATE;
+    case COST_EDIT_LOAD:
+      return { ...state,
+        amount: action.payload.amount,
+        category: action.payload.category,
+        subcategory: action.payload.subcategory,
+        description: action.payload.description }
+    case COST_EDIT_SUCCESS:
       return INITIAL_STATE;
     default:
       return state;

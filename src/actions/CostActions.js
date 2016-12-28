@@ -1,6 +1,8 @@
 import firebase from 'firebase';
 import {
   COST_CREATE,
+  COST_EDIT_LOAD,
+  COST_EDIT_SUCCESS,
   COSTS_FETCH_SUCCESS,
   UPDATE_COST,
   UPDATE_CATEGORY,
@@ -63,9 +65,24 @@ export const costsFetch = ({ selectedMonth }) => {
   }
 }
 
+export const loadCost = ({ amount, category, subcategory, description }) => {
+  return (dispatch) => {
+    dispatch({
+      type: COST_EDIT_LOAD,
+      payload: { amount, category, subcategory, description }
+    });
+  }
+};
+
 export const costEdit = ({ selectedMonth, amount, category, subcategory, description, uid }) => {
   return(dispatch) => {
+
     firebase.database().ref(`/${selectedMonth}/${uid}`)
       .set({ amount, category, subcategory, description })
+      .then(() => {
+        dispatch({ type: COST_EDIT_SUCCESS });
+      })
+
+    // dispatch edit success ( reset form)
   }
 }
