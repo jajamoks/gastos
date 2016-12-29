@@ -89,3 +89,10 @@ export const costEdit = ({ selectedMonth, amount, category, subcategory, descrip
       })
   }
 }
+
+export const costDelete = ({ selectedMonth, uid }) => {
+  return () => {
+    firebase.database().ref(`/${selectedMonth}/${uid}`)
+      .remove();
+  }
+}

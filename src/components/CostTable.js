@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table, Modal, Button } from 'react-bootstrap';
 import NumberFormat from 'react-number-format';
-import { costsFetch, costEdit, loadCost, cancelEdit } from '../actions';
+import { costsFetch, costEdit, loadCost, cancelEdit, costDelete } from '../actions';
 import { getUtilidades, getComida, getCarro, getCasa, getPersonal, getFun, getGata, getTotalCost } from '../selectors';
 import CostForm from './CostForm';
 import TableRow from './TableRow';
@@ -12,31 +12,41 @@ class CostTable extends Component {
     super();
 
     this.state = {
-      showModal: false,
+      showEditModal: false,
       selectedItem: ''
     };
   }
 
   componentWillMount() {
-    const { selectedMonth } = this.props
+    const { selectedMonth } = this.props;
     this.props.costsFetch({ selectedMonth });
   }
 
-  onButtonSubmit() {
-    const { selectedMonth, amount, category, subcategory, description } = this.props;
-    this.props.costEdit({ selectedMonth, amount, category, subcategory, description, uid: this.state.selectedItem });
-    this.setState({ showModal: false });
+  onEditClick(item) {
+    this.setState({ showEditModal: true, selectedItem: item.uid });
+    this.props.loadCost({ amount: item.amount, category: item.category, subcategory: item.subcategory, description: item.description })
   }
 
-  onEditClick(item) {
-    this.setState({ showModal: true, selectedItem: item.uid });
-    this.props.loadCost({ amount: item.amount, category: item.category, subcategory: item.subcategory, description: item.description })
+  onEditSubmit() {
+    const { selectedMonth, amount, category, subcategory, description } = this.props;
+    this.props.costEdit({ selectedMonth, amount, category, subcategory, description, uid: this.state.selectedItem });
+    this.setState({ showEditModal: false, selectedItem: '' });
+  }
+
+  onDeleteClick(item) {
+    this.setState({ showDeleteModal: true, selectedItem: item.uid });
+  }
+
+  onDeleteSubmit() {
+    const { selectedMonth } = this.props;
+    this.props.costDelete({ selectedMonth, uid: this.state.selectedItem });
+    this.setState({ showDeleteModal: false, selectedItem: '' });
   }
 
   renderUtilidades() {
     let rows = this.props.utilidades.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} />
+        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
       )
     })
     return rows;
@@ -45,7 +55,7 @@ class CostTable extends Component {
   renderComida() {
     let rows = this.props.comida.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} />
+        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
       )
     })
     return rows;
@@ -54,7 +64,7 @@ class CostTable extends Component {
   renderCarro() {
     let rows = this.props.carro.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} />
+        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
       )
     })
     return rows;
@@ -63,7 +73,7 @@ class CostTable extends Component {
   renderCasa() {
     let rows = this.props.casa.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} />
+        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
       )
     })
     return rows;
@@ -72,7 +82,7 @@ class CostTable extends Component {
   renderPersonal() {
     let rows = this.props.personal.map((item, i) => {
       return (
-        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} />
+        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
       );
     })
     return rows;
@@ -81,7 +91,7 @@ class CostTable extends Component {
   renderFun() {
     let rows = this.props.fun.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} />
+        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
       )
     })
     return rows;
@@ -90,14 +100,13 @@ class CostTable extends Component {
   renderGata() {
     let rows = this.props.gata.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} />
+        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
       )
     })
     return rows;
   }
 
   render() {
-    console.log(this.state.selectedItem)
     const parts = this.props.selectedMonth.split('-')
     const separatedMonth = parts[0].toUpperCase();
     const separatedYear = parts[1]
@@ -179,8 +188,8 @@ class CostTable extends Component {
             {this.renderGata()}
           </tbody>
         </Table>
-        <Modal bsSize='small' show={this.state.showModal} onHide={() => {
-          this.setState({ showModal: false });
+        <Modal bsSize='small' show={this.state.showEditModal} onHide={() => {
+          this.setState({ showEditModal: false });
           this.props.cancelEdit();
         }}>
           <Modal.Header closeButton>
@@ -190,7 +199,18 @@ class CostTable extends Component {
             <CostForm />
           </Modal.Body>
           <Modal.Footer className='center'>
-            <Button bsStyle='warning' onClick={() => this.onButtonSubmit()}>Guardar Cambios</Button>
+            <Button bsStyle='warning' onClick={() => this.onEditSubmit()}>Guardar Cambios</Button>
+          </Modal.Footer>
+        </Modal>
+        <Modal bsSize='small' show={this.state.showDeleteModal} onHide={() => this.setState({ showDeleteModal: false })}>
+          <Modal.Header closeButton>
+            <Modal.Title>Borrar Costo</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Estas Seguro?
+          </Modal.Body>
+          <Modal.Footer className='center'>
+            <Button bsStyle='danger' onClick={() => this.onDeleteSubmit()}>Borrar</Button>
           </Modal.Footer>
         </Modal>
       </div>
@@ -216,4 +236,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { costsFetch, costEdit, loadCost, cancelEdit })(CostTable);
+export default connect(mapStateToProps, { costsFetch, costEdit, loadCost, cancelEdit, costDelete })(CostTable);
