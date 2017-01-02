@@ -6,6 +6,9 @@ body {
 
 thead tr {
   background-color: #33aa61;
+  font-family: 'Lucida Console', monospace;
+  font-size: 18;
+  font-weight: bold;
 }
 
 #MonthSelectorContainer {
@@ -56,6 +59,14 @@ thead tr {
 
 .category-row {
   background-color: #eee;
+}
+
+.category-row th:first-child {
+  padding-left: 1em;
+}
+
+.category-row .right-align {
+  font-weight: bold;
 }
 
 .total-display {
