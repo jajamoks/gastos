@@ -5,6 +5,7 @@ export const LOGIN_USER_SUCCESS = 'login_user_success';
 export const LOGIN_USER_FAIL = 'login_user_fail';
 
 export const UPDATE_COST = 'update_cost';
+export const UPDATE_COST_FAILURE = 'update_cost_failure';
 export const UPDATE_CATEGORY = 'update_category';
 export const UPDATE_SUBCATEGORY = 'update_subcategory';
 export const UPDATE_DESCRIPTION = 'update_description';

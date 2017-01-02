@@ -14,15 +14,28 @@ class CostInput extends Component {
     this.props.costCreate({ amount, category, subcategory, description, date: selectedMonth })
   }
 
-
+  renderButton() {
+    if (this.props.error) {
+      return (
+        <Button bsStyle='primary' onClick={this.onButtonSubmit.bind(this)} disabled block>
+          Añadir
+        </Button>
+      )
+    } else {
+      return (
+        <Button bsStyle='primary' onClick={this.onButtonSubmit.bind(this)} block>
+          Añadir
+        </Button>
+      )
+    }
+  }
 
   render() {
+
     return (
       <div>
         <CostForm />
-        <Button bsStyle='primary' onClick={this.onButtonSubmit.bind(this)} block>
-          Crear
-        </Button>
+        {this.renderButton()}
       </div>
     );
   }
@@ -31,6 +44,7 @@ class CostInput extends Component {
 const mapStateToProps = state => {
   return {
     amount: state.cost.amount,
+    error: state.cost.error,
     category: state.cost.category,
     subcategory: state.cost.subcategory,
     description: state.cost.description,

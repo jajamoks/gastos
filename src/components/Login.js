@@ -29,7 +29,7 @@ class Login extends Component {
             <h3>Gastos App</h3>
             <br/>
             <br/>
-            <p className='error-text'>{this.props.error}</p>
+            <p className='error-login'>{this.props.error}</p>
             <form>
               <FormGroup>
                 <ControlLabel>

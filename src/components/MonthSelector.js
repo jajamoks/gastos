@@ -92,8 +92,8 @@ class MonthSelector extends Component {
           </Modal.Footer>
         </Modal>
         <ButtonGroup vertical>
-          <Button bsStyle='success' onClick={() => this.open()} >
-            Add Month <i className='fa fa-plus'></i>
+          <Button bsStyle='warning' onClick={() => this.open()} >
+            Añadir Mes  <i className='fa fa-plus'></i>
           </Button>
           {this.renderMonthList()}
         </ButtonGroup>

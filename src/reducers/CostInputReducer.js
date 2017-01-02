@@ -4,6 +4,7 @@ import {
   COST_EDIT_CANCEL,
   COST_EDIT_SUCCESS,
   UPDATE_COST,
+  UPDATE_COST_FAILURE,
   UPDATE_CATEGORY,
   UPDATE_SUBCATEGORY,
   UPDATE_DESCRIPTION,
@@ -12,6 +13,7 @@ import {
 
 const INITIAL_STATE = {
   amount: '',
+  error: '',
   category: '',
   subcategory: '',
   description: '',
@@ -22,7 +24,9 @@ export default (state = INITIAL_STATE, action) => {
   console.log(action);
   switch(action.type) {
     case UPDATE_COST:
-      return { ...state, amount: action.payload }
+      return { ...state, amount: action.payload, error: '' }
+    case UPDATE_COST_FAILURE:
+      return { ...state, amount: action.payload, error: 'Debe ser un numero' }
     case UPDATE_CATEGORY:
       return { ...state, category: action.payload }
     case UPDATE_SUBCATEGORY:

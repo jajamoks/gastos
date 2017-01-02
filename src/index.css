@@ -32,9 +32,14 @@ thead tr {
   text-align: right;
 }
 
-.error-text {
+.error-login {
   color: red;
   font-size: 16px;
+}
+
+.error-validation {
+  color: red;
+  font-size: 12px;
 }
 
 .left-pad td:first-child {

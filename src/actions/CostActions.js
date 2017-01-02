@@ -6,6 +6,7 @@ import {
   COST_EDIT_SUCCESS,
   COSTS_FETCH_SUCCESS,
   UPDATE_COST,
+  UPDATE_COST_FAILURE,
   UPDATE_CATEGORY,
   UPDATE_SUBCATEGORY,
   UPDATE_DESCRIPTION,
@@ -13,9 +14,12 @@ import {
 } from './types';
 
 export const updateCost = (amount) => {
-  return {
-    type: UPDATE_COST,
-    payload: amount
+  return (dispatch) => {
+    if (isNaN(amount)) {
+      dispatch({ type: UPDATE_COST_FAILURE, payload: amount })
+    } else {
+      dispatch({ type: UPDATE_COST, payload: amount })
+    }
   }
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, FormGroup, FormControl, ControlLabel, InputGroup } from 'react-bootstrap';
+import ClassNames from 'classnames';
 import { updateCost, updateCategory, updateSubcategory, updateDescription } from '../actions'
 
 const optionsUtil = ['Agua', 'Electridad', 'Telefono', 'Internet y Cable', 'Gas', 'Impuestos']
@@ -89,6 +90,10 @@ class CostInput extends Component {
   }
 
   render() {
+    const validationState = ClassNames({
+      'error': this.props.error,
+      null: !this.props.error
+    })
     return (
       <Form>
         <FormGroup>
@@ -98,7 +103,7 @@ class CostInput extends Component {
             onChange={this.onCategoryChange.bind(this)}
             componentClass="select"
           >
-            <option value="">-select one-</option>
+            <option value="">- seleccionar -</option>
             <option value="Utilidades">Utilidades</option>
             <option value="Comida">Comida</option>
             <option value="Carro">Carro</option>
@@ -110,27 +115,28 @@ class CostInput extends Component {
         </FormGroup>
         <br/>
         <FormGroup>
-          <ControlLabel>SubCategoría</ControlLabel>
+          <ControlLabel>Subcategoría</ControlLabel>
           <FormControl
             value={this.props.subcategory}
             onChange={this.onSubcategoryChange.bind(this)}
             componentClass='select'
           >
-            <option value="">-select one-</option>
+            <option value="">- seleccionar -</option>
             {this.renderSubOptions()}
           </FormControl>
         </FormGroup>
-        <FormGroup>
+        <FormGroup validationState={validationState}>
           <ControlLabel>Costo: </ControlLabel>
           <InputGroup>
             <FormControl
               type='text'
               value={this.props.amount}
-              placeholder='Enter amount'
+              placeholder='Entrar costo'
               onChange={this.onCostChange.bind(this)}
             />
-            <InputGroup.Addon>$</InputGroup.Addon>
+            <InputGroup.Addon>₡</InputGroup.Addon>
           </InputGroup><br/>
+          <span className='error-validation'>{this.props.error}</span>
         </FormGroup>
         <FormGroup>
           <ControlLabel>Descripción</ControlLabel>
@@ -148,6 +154,7 @@ class CostInput extends Component {
 const mapStateToProps = state => {
   return {
     amount: state.cost.amount,
+    error: state.cost.error,
     category: state.cost.category,
     subcategory: state.cost.subcategory,
     description: state.cost.description
