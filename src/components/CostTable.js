@@ -138,67 +138,89 @@ class CostTable extends Component {
         <Table id='CostTable'>
           <thead>
             <tr>
-              <th className='center'>Categorías</th>
-              <th className='center'>Subcategoría</th>
-              <th className='center'>Descripción</th>
-              <th className='center'>Costo</th>
+              <th>Categorías</th>
+              <th>Subcategoría</th>
+              <th>Descripción</th>
+              <th className='right-align'>Costo</th>
+              <th className='right-align'>Total</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr className='category-row'>
               <th>UTILIDADES</th>
               <td></td>
               <td></td>
-              <td><NumberFormat value={this.props.utilidadesTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></td>
+              <td></td>
+              <td className='right-align'>
+                <NumberFormat value={this.props.utilidadesTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} />
+              </td>
               <td></td>
             </tr>
             {this.renderUtilidades()}
-            <tr>
+            <tr className='category-row'>
               <th>COMIDA</th>
               <td></td>
               <td></td>
-              <td><NumberFormat value={this.props.comidaTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></td>
+              <td></td>
+              <td className='right-align'>
+                <NumberFormat value={this.props.comidaTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} />
+              </td>
               <td></td>
             </tr>
             {this.renderComida()}
-            <tr>
+            <tr className='category-row'>
               <th>CARRO</th>
               <td></td>
               <td></td>
-              <td><NumberFormat value={this.props.carroTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></td>
+              <td></td>
+              <td className='right-align'>
+                <NumberFormat value={this.props.carroTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} />
+              </td>
               <td></td>
             </tr>
             {this.renderCarro()}
-            <tr>
+            <tr className='category-row'>
               <th>CASA</th>
               <td></td>
               <td></td>
-              <td><NumberFormat value={this.props.casaTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></td>
+              <td></td>
+              <td className='right-align'>
+                <NumberFormat value={this.props.casaTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} />
+              </td>
               <td></td>
             </tr>
             {this.renderCasa()}
-            <tr>
+            <tr className='category-row'>
               <th>PERSONAL</th>
               <td></td>
               <td></td>
-              <td><NumberFormat value={this.props.personalTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></td>
+              <td></td>
+              <td className='right-align'>
+                <NumberFormat value={this.props.personalTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} />
+              </td>
               <td></td>
             </tr>
             {this.renderPersonal()}
-            <tr>
+            <tr className='category-row'>
               <th>FUN</th>
               <td></td>
               <td></td>
-              <td><NumberFormat value={this.props.funTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></td>
+              <td></td>
+              <td className='right-align'>
+                <NumberFormat value={this.props.funTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} />
+              </td>
               <td></td>
             </tr>
             {this.renderFun()}
-            <tr>
+            <tr className='category-row'>
               <th>GATA</th>
               <td></td>
               <td></td>
-              <td><NumberFormat value={this.props.gataTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></td>
+              <td></td>
+              <td className='right-align'>
+                <NumberFormat value={this.props.gataTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} />
+              </td>
               <td></td>
             </tr>
             {this.renderGata()}
