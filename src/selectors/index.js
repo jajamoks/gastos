@@ -36,9 +36,50 @@ export const getGata = createSelector(
   getCostsForMonth, (costs) => _.filter(costs, ['category', 'Gata'])
 )
 
+export const getUtilidadesTotal = createSelector(
+  getUtilidades, (costs) => {
+    return _.sum(_.map(costs, 'amount').map(Number))
+  }
+)
+
+export const getComidaTotal = createSelector(
+  getComida, (costs) => {
+    return _.sum(_.map(costs, 'amount').map(Number))
+  }
+)
+
+export const getCarroTotal = createSelector(
+  getCarro, (costs) => {
+    return _.sum(_.map(costs, 'amount').map(Number))
+  }
+)
+
+export const getCasaTotal = createSelector(
+  getCasa, (costs) => {
+    return _.sum(_.map(costs, 'amount').map(Number))
+  }
+)
+
+export const getPersonalTotal = createSelector(
+  getPersonal, (costs) => {
+    return _.sum(_.map(costs, 'amount').map(Number))
+  }
+)
+
+export const getFunTotal = createSelector(
+  getFun, (costs) => {
+    return _.sum(_.map(costs, 'amount').map(Number))
+  }
+)
+
+export const getGataTotal = createSelector(
+  getGata, (costs) => {
+    return _.sum(_.map(costs, 'amount').map(Number))
+  }
+)
+
 export const getTotalCost = createSelector(
   getCostsForMonth, (costs) => {
-    let allCosts = _.map(costs, 'amount')
-    return _.sum(allCosts.map(Number))
+    return _.sum(_.map(costs, 'amount').map(Number))
   }
 )

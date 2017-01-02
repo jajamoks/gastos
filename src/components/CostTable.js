@@ -3,7 +3,23 @@ import { connect } from 'react-redux';
 import { Table, Modal, Button } from 'react-bootstrap';
 import NumberFormat from 'react-number-format';
 import { costsFetch, costEdit, loadCost, cancelEdit, costDelete } from '../actions';
-import { getUtilidades, getComida, getCarro, getCasa, getPersonal, getFun, getGata, getTotalCost } from '../selectors';
+import {
+  getUtilidades,
+  getUtilidadesTotal,
+  getComida,
+  getComidaTotal,
+  getCarro,
+  getCarroTotal,
+  getCasa,
+  getCasaTotal,
+  getPersonal,
+  getPersonalTotal,
+  getFun,
+  getFunTotal,
+  getGata,
+  getGataTotal,
+  getTotalCost
+} from '../selectors';
 import CostForm from './CostForm';
 import TableRow from './TableRow';
 
@@ -134,7 +150,7 @@ class CostTable extends Component {
               <th>UTILIDADES</th>
               <td></td>
               <td></td>
-              <td></td>
+              <td><NumberFormat value={this.props.utilidadesTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></td>
               <td></td>
             </tr>
             {this.renderUtilidades()}
@@ -142,7 +158,7 @@ class CostTable extends Component {
               <th>COMIDA</th>
               <td></td>
               <td></td>
-              <td></td>
+              <td><NumberFormat value={this.props.comidaTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></td>
               <td></td>
             </tr>
             {this.renderComida()}
@@ -150,7 +166,7 @@ class CostTable extends Component {
               <th>CARRO</th>
               <td></td>
               <td></td>
-              <td></td>
+              <td><NumberFormat value={this.props.carroTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></td>
               <td></td>
             </tr>
             {this.renderCarro()}
@@ -158,7 +174,7 @@ class CostTable extends Component {
               <th>CASA</th>
               <td></td>
               <td></td>
-              <td></td>
+              <td><NumberFormat value={this.props.casaTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></td>
               <td></td>
             </tr>
             {this.renderCasa()}
@@ -166,7 +182,7 @@ class CostTable extends Component {
               <th>PERSONAL</th>
               <td></td>
               <td></td>
-              <td></td>
+              <td><NumberFormat value={this.props.personalTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></td>
               <td></td>
             </tr>
             {this.renderPersonal()}
@@ -174,7 +190,7 @@ class CostTable extends Component {
               <th>FUN</th>
               <td></td>
               <td></td>
-              <td></td>
+              <td><NumberFormat value={this.props.funTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></td>
               <td></td>
             </tr>
             {this.renderFun()}
@@ -182,7 +198,7 @@ class CostTable extends Component {
               <th>GATA</th>
               <td></td>
               <td></td>
-              <td></td>
+              <td><NumberFormat value={this.props.gataTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></td>
               <td></td>
             </tr>
             {this.renderGata()}
@@ -221,12 +237,19 @@ class CostTable extends Component {
 const mapStateToProps = state => {
   return {
     utilidades: getUtilidades(state),
+    utilidadesTotal: getUtilidadesTotal(state),
     comida: getComida(state),
+    comidaTotal: getComidaTotal(state),
     carro: getCarro(state),
+    carroTotal: getCarroTotal(state),
     casa: getCasa(state),
+    casaTotal: getCasaTotal(state),
     personal: getPersonal(state),
+    personalTotal: getPersonalTotal(state),
     fun: getFun(state),
+    funTotal: getFunTotal(state),
     gata: getGata(state),
+    gataTotal: getGataTotal(state),
     total: getTotalCost(state),
     selectedMonth: state.month.selectedMonth,
     amount: state.cost.amount,
