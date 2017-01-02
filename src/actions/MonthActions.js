@@ -37,7 +37,7 @@ export const updateNewYear = (text) => {
 export const monthAdd = ({ newMonth, newYear }) => {
   const combinedDate = newMonth + '-' + newYear
   return (dispatch) => {
-    dispatch({ type: MONTH_ADD })
+    dispatch({ type: MONTH_ADD }) // unused
 
     firebase.database().ref('/availableMonths')
       .push(combinedDate)
@@ -45,7 +45,7 @@ export const monthAdd = ({ newMonth, newYear }) => {
         dispatch({ type: MONTH_ADD_SUCCESS })
       })
       .catch(error => {
-        dispatch({ type: MONTH_ADD_FAILURE })
+        dispatch({ type: MONTH_ADD_FAILURE }) //unused
       });
   };
 };

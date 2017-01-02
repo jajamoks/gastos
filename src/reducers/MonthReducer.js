@@ -3,9 +3,7 @@ import {
   MONTH_SELECT,
   UPDATE_NEW_MONTH,
   UPDATE_NEW_YEAR,
-  MONTH_ADD,
   MONTH_ADD_SUCCESS,
-  MONTH_ADD_FAILURE,
   MONTHS_FETCH_SUCCESS
 } from '../actions/types';
 
@@ -28,6 +26,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, newYear: action.payload }
     case MONTHS_FETCH_SUCCESS:
       return { ...state, availableMonths: action.payload }
+    case MONTH_ADD_SUCCESS:
+      return INITIAL_STATE;
     default:
       return state;
   }
