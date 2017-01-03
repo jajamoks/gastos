@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
+import LogoutIcon from './LogoutIcon';
 import CostInput from './CostInput';
 import CostTable from './CostTable';
 import MonthSelector from './MonthSelector';
@@ -21,6 +22,9 @@ class Main extends Component {
           <Col lg={2} id='CostInputContainer'>
             <CostInput />
           </Col>
+        </Row>
+        <Row>
+          <LogoutIcon />
         </Row>
       </Grid>
     );

@@ -55,16 +55,16 @@ class CostInput extends Component {
       })
       return options
     }
-    if (this.props.category === 'Carro') {
-      let options = optionsCarro.map((option, i) => {
+    if (this.props.category === 'Transporte') {
+      let options = optionsTrans.map((option, i) => {
         return(
           <option key={i} value={option}>{option}</option>
         )
       })
       return options
     }
-    if (this.props.category === 'Transporte') {
-      let options = optionsTrans.map((option, i) => {
+    if (this.props.category === 'Casa') {
+      let options = optionsCasa.map((option, i) => {
         return(
           <option key={i} value={option}>{option}</option>
         )

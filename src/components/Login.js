@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Row, Col, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
-import { emailChanged, passwordChanged, loginUser } from '../actions'
+import { emailChanged, passwordChanged, loginUser } from '../actions';
 
 class Login extends Component {
   renderButton() {

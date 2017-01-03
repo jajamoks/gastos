@@ -88,7 +88,17 @@ thead tr {
   margin-left: 2em;
 }
 
-.fa {
+.table-icon {
   color: silver;
   cursor: pointer;
+}
+
+#logout-icon {
+  cursor: pointer;
+  text-decoration: none;
+  float: right;
+}
+
+#logout-icon i {
+  padding-left: .25em;
 }
