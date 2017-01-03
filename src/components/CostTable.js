@@ -132,8 +132,20 @@ class CostTable extends Component {
           <h4 id='month-header'>{separatedMonth + ' ' + separatedYear}</h4>
         </div>
         <div className='total-display'>
-          <h4><NumberFormat value={Math.round(this.props.total / 550)} displayType={'text'} thousandSeparator={true} prefix={'$ '} /></h4>
-          <h4><NumberFormat value={this.props.total} displayType={'text'} thousandSeparator={true} prefix={'₡ '} /></h4>
+          <h4>
+            <NumberFormat
+              value={this.props.total ? Math.round(this.props.total / 550) : '0' }
+              displayType={'text'}
+              thousandSeparator={true}
+              prefix={'$ '} />
+          </h4>
+          <h4>
+            <NumberFormat
+              value={this.props.total ? this.props.total : '0' }
+              displayType={'text'}
+              thousandSeparator={true}
+              prefix={'₡ '} />
+          </h4>
         </div>
         <Table id='CostTable'>
           <thead>
