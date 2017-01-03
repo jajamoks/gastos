@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { Form, FormGroup, FormControl, ControlLabel, InputGroup } from 'react-bootstrap';
 import { updateCost, updateCategory, updateSubcategory, updateDescription } from '../actions';
 
-const optionsUtil = ['Agua', 'Electridad', 'Telefono', 'Internet y Cable', 'Gas', 'Impuestos']
+const optionsUtil = ['Agua', 'Electridad', 'Telefono', 'Internet y Cable', 'Gas', 'Impuestos', 'Correo']
 const optionsComida = ['Compras', 'Restaurante', 'Cafe']
-const optionsCarro = ['Gasolina', 'Reparación', 'Parqueo', 'Seguro', 'Marchamo', 'Riteve']
+const optionsCarro = ['Gasolina', 'Parqueo', 'Reparación', 'Seguro', 'Marchamo', 'Riteve']
+const optionsTrans = ['Taxi', 'Uber', 'Peaje', 'Bus']
 const optionsCasa = ['Materiales', 'Mano obra', 'Empleada', 'Alarma']
 const optionsPersonal = ['Corte Pelo', 'Dentista', 'Doctor', 'Terapia', 'Medicinas', 'Ropa/Zapatos', 'Chunches']
 const optionsFun = ['Cine', 'Bar', 'Eventos']
@@ -54,8 +55,16 @@ class CostInput extends Component {
       })
       return options
     }
-    if (this.props.category === 'Casa') {
-      let options = optionsCasa.map((option, i) => {
+    if (this.props.category === 'Carro') {
+      let options = optionsCarro.map((option, i) => {
+        return(
+          <option key={i} value={option}>{option}</option>
+        )
+      })
+      return options
+    }
+    if (this.props.category === 'Transporte') {
+      let options = optionsTrans.map((option, i) => {
         return(
           <option key={i} value={option}>{option}</option>
         )
@@ -102,6 +111,7 @@ class CostInput extends Component {
             <option value="Utilidades">Utilidades</option>
             <option value="Comida">Comida</option>
             <option value="Carro">Carro</option>
+            <option value="Transporte">Transporte</option>
             <option value="Casa">Casa</option>
             <option value="Personal">Personal</option>
             <option value="Fun">Fun</option>

@@ -20,6 +20,10 @@ export const getCarro = createSelector(
   getCostsForMonth, (costs) => _.filter(costs, ['category', 'Carro'])
 )
 
+export const getTrans = createSelector(
+  getCostsForMonth, (costs) => _.filter(costs, ['category', 'Transporte'])
+)
+
 export const getCasa = createSelector(
   getCostsForMonth, (costs) => _.filter(costs, ['category', 'Casa'])
 )
@@ -50,6 +54,12 @@ export const getComidaTotal = createSelector(
 
 export const getCarroTotal = createSelector(
   getCarro, (costs) => {
+    return _.sum(_.map(costs, 'amount').map(Number))
+  }
+)
+
+export const getTransTotal = createSelector(
+  getTrans, (costs) => {
     return _.sum(_.map(costs, 'amount').map(Number))
   }
 )

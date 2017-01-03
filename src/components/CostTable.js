@@ -10,6 +10,8 @@ import {
   getComidaTotal,
   getCarro,
   getCarroTotal,
+  getTrans,
+  getTransTotal,
   getCasa,
   getCasaTotal,
   getPersonal,
@@ -79,6 +81,15 @@ class CostTable extends Component {
 
   renderCarro() {
     let rows = this.props.carro.map((item, i) => {
+      return(
+        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
+      )
+    })
+    return rows;
+  }
+
+  renderTrans() {
+    let rows = this.props.trans.map((item, i) => {
       return(
         <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
       )
@@ -193,6 +204,17 @@ class CostTable extends Component {
             </tr>
             {this.renderCarro()}
             <tr className='category-row'>
+              <th>TRANSPORTE</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td className='right-align'>
+                <NumberFormat value={this.props.transTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} />
+              </td>
+              <td></td>
+            </tr>
+            {this.renderTrans()}
+            <tr className='category-row'>
               <th>CASA</th>
               <td></td>
               <td></td>
@@ -276,6 +298,8 @@ const mapStateToProps = state => {
     comidaTotal: getComidaTotal(state),
     carro: getCarro(state),
     carroTotal: getCarroTotal(state),
+    trans: getTrans(state),
+    transTotal: getTransTotal(state),
     casa: getCasa(state),
     casaTotal: getCasaTotal(state),
     personal: getPersonal(state),
