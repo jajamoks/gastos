@@ -1,12 +1,10 @@
+import _ from 'lodash';
+import moment from 'moment';
 import firebase from 'firebase';
 import {
   COSTS_FETCH_SUCCESS,
+  MONTH_CREATE,
   MONTH_SELECT,
-  MONTH_ADD,
-  MONTH_ADD_SUCCESS,
-  MONTH_ADD_FAILURE,
-  UPDATE_NEW_MONTH,
-  UPDATE_NEW_YEAR,
   MONTHS_FETCH_SUCCESS
 } from './types';
 
@@ -20,34 +18,15 @@ export const monthSelect = (month) => {
   }
 }
 
-export const updateNewMonth = (text) => {
-  return {
-    type: UPDATE_NEW_MONTH,
-    payload: text
-  }
-}
-
-export const updateNewYear = (text) => {
-  return {
-    type: UPDATE_NEW_YEAR,
-    payload: text
-  }
-}
-
-export const monthAdd = ({ newMonth, newYear }) => {
-  const combinedDate = newMonth + '-' + newYear
+export const monthCreate = ({ availableMonths }) => {
+  const thisMonth = moment().format('MMMM-YYYY')
   return (dispatch) => {
-    dispatch({ type: MONTH_ADD }) // unused
-
-    firebase.database().ref('/availableMonths')
-      .push(combinedDate)
-      .then(() => {
-        dispatch({ type: MONTH_ADD_SUCCESS })
-      })
-      .catch(error => {
-        dispatch({ type: MONTH_ADD_FAILURE }) //unused
-      });
-  };
+    if (!_.includes(availableMonths, thisMonth)) {
+      firebase.database().ref('/availableMonths')
+        .push(thisMonth)
+        .then(() => dispatch({ type: MONTH_CREATE }))
+    }
+  }
 };
 
 export const monthsFetch = () => {

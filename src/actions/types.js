@@ -18,9 +18,4 @@ export const COSTS_FETCH_SUCCESS = 'costs_fetch_success';
 
 export const MONTH_SELECT = 'month_select';
 export const MONTH_CREATE = 'month_create';
-export const MONTH_ADD = 'month_add';
-export const MONTH_ADD_SUCCESS = 'month_add_success';
-export const MONTH_ADD_FAILURE = 'month_add_failure';
-export const UPDATE_NEW_MONTH = 'update_new_month';
-export const UPDATE_NEW_YEAR = 'update_new_year';
 export const MONTHS_FETCH_SUCCESS = 'months_fetch_success';
