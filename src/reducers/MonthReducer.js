@@ -27,7 +27,7 @@ export default (state = INITIAL_STATE, action) => {
     case MONTHS_FETCH_SUCCESS:
       return { ...state, availableMonths: action.payload }
     case MONTH_ADD_SUCCESS:
-      return INITIAL_STATE;
+      return { ...state, newMonth: '', newYear: '' };
     default:
       return state;
   }

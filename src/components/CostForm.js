@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, FormGroup, FormControl, ControlLabel, InputGroup } from 'react-bootstrap';
-import ClassNames from 'classnames';
-import { updateCost, updateCategory, updateSubcategory, updateDescription } from '../actions'
+import { updateCost, updateCategory, updateSubcategory, updateDescription } from '../actions';
 
 const optionsUtil = ['Agua', 'Electridad', 'Telefono', 'Internet y Cable', 'Gas', 'Impuestos']
-const optionsComida = ['Compras', 'Restaurante']
-const optionsCarro = ['Gasolina', 'Reparación', 'Seguro']
+const optionsComida = ['Compras', 'Restaurante', 'Cafe']
+const optionsCarro = ['Gasolina', 'Reparación', 'Parqueo', 'Seguro', 'Marchamo', 'Riteve']
 const optionsCasa = ['Materiales', 'Mano obra', 'Empleada', 'Alarma']
-const optionsPersonal = ['Corte Pelo', 'Dentista', 'Doctor', 'Medicinas', 'Otros']
-const optionsFun = ['Cine', 'Bar', 'Cafe', 'Eventos']
+const optionsPersonal = ['Corte Pelo', 'Dentista', 'Doctor', 'Terapia', 'Medicinas', 'Ropa/Zapatos', 'Chunches']
+const optionsFun = ['Cine', 'Bar', 'Eventos']
 const optionsGata = ['Veterinario', 'Comida', 'Arena', 'Juguetes']
 
 class CostInput extends Component {
@@ -90,10 +89,6 @@ class CostInput extends Component {
   }
 
   render() {
-    const validationState = ClassNames({
-      'error': this.props.error,
-      null: !this.props.error
-    })
     return (
       <Form>
         <FormGroup>
@@ -125,7 +120,7 @@ class CostInput extends Component {
             {this.renderSubOptions()}
           </FormControl>
         </FormGroup>
-        <FormGroup validationState={validationState}>
+        <FormGroup validationState={ this.props.error ? 'error' : null }>
           <ControlLabel>Costo: </ControlLabel>
           <InputGroup>
             <FormControl
