@@ -1,9 +1,9 @@
 import React from 'react';
 import NumberFormat from 'react-number-format';
 
-const TableRow = ({ item, onEdit, onDelete }) => {
+const TableRow = ({ item, onEdit, onDelete, collapse }) => {
   return (
-    <tr className='left-pad'>
+    <tr className='left-pad' className={collapse}>
       <td></td>
       <td>{item.subcategory}</td>
       <td>{item.description}</td>

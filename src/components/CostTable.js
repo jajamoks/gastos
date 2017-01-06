@@ -31,7 +31,8 @@ class CostTable extends Component {
 
     this.state = {
       showEditModal: false,
-      selectedItem: ''
+      selectedItem: '',
+      showUtilidades: false
     };
   }
 
@@ -64,7 +65,13 @@ class CostTable extends Component {
   renderUtilidades() {
     let rows = this.props.utilidades.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
+        <TableRow
+          key={i}
+          item={item}
+          onEdit={() => this.onEditClick(item)}
+          onDelete={() => this.onDeleteClick(item)}
+          collapse={this.state.showUtilidades ? '' : 'hidden'}
+        />
       )
     })
     return rows;
@@ -170,7 +177,7 @@ class CostTable extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr className='category-row'>
+            <tr className='category-row' onClick={() => this.setState({ showUtilidades: !this.state.showUtilidades })}>
               <th>UTILIDADES</th>
               <td></td>
               <td></td>

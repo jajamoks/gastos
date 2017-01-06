@@ -28,6 +28,10 @@ thead tr {
   text-align: center;
 }
 
+.hidden {
+  display: none;
+}
+
 .right-align {
   text-align: right;
 }
