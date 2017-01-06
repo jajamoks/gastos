@@ -19,12 +19,10 @@ class Main extends Component {
             <CostTable />
           </Col>
           <Col lg={1} />
-          <Col lg={2} id='CostInputContainer'>
+          <Col lg={2}>
+            <LogoutIcon />
             <CostInput />
           </Col>
-        </Row>
-        <Row>
-          <LogoutIcon />
         </Row>
       </Grid>
     );

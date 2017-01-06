@@ -33,7 +33,7 @@ class CostInput extends Component {
   render() {
 
     return (
-      <div>
+      <div id='CostInput'>
         <CostForm />
         {this.renderButton()}
       </div>
