@@ -46,10 +46,6 @@ thead tr {
   font-size: 12px;
 }
 
-.left-pad td:first-child {
-  padding-left: 3em;
-}
-
 #month-header {
   font-weight: bold;
   color: #33aa61;

@@ -3,7 +3,7 @@ import NumberFormat from 'react-number-format';
 
 const TableRow = ({ item, onEdit, onDelete, collapse }) => {
   return (
-    <tr className='left-pad' className={collapse}>
+    <tr className={collapse}>
       <td></td>
       <td>{item.subcategory}</td>
       <td>{item.description}</td>
