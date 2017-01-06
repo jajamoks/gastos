@@ -84,12 +84,13 @@ thead tr {
   padding-bottom: 2em;
 }
 
-#icon-edit {
-  padding-left: 2px;
+#icon-delete {
+  margin-left: 1.5em;
 }
 
-#icon-delete {
-  margin-left: 2em;
+.fa-angle-double-down {
+  padding-right: 1em;
+  padding-left: 1em;
 }
 
 .table-icon {

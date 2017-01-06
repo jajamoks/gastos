@@ -32,7 +32,13 @@ class CostTable extends Component {
     this.state = {
       showEditModal: false,
       selectedItem: '',
-      showUtilidades: false
+      showUtilidades: false,
+      showComida: false,
+      showTrans: false,
+      showCasa: false,
+      showPersonal: false,
+      showFun: false,
+      showGata: false
     };
   }
 
@@ -80,7 +86,13 @@ class CostTable extends Component {
   renderComida() {
     let rows = this.props.comida.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
+        <TableRow
+          key={i}
+          item={item}
+          onEdit={() => this.onEditClick(item)}
+          onDelete={() => this.onDeleteClick(item)}
+          collapse={this.state.showComida ? '' : 'hidden'}
+        />
       )
     })
     return rows;
@@ -89,7 +101,13 @@ class CostTable extends Component {
   renderCarro() {
     let rows = this.props.carro.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
+        <TableRow
+          key={i}
+          item={item}
+          onEdit={() => this.onEditClick(item)}
+          onDelete={() => this.onDeleteClick(item)}
+          collapse={this.state.showCarro ? '' : 'hidden'}
+        />
       )
     })
     return rows;
@@ -98,7 +116,13 @@ class CostTable extends Component {
   renderTrans() {
     let rows = this.props.trans.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
+        <TableRow
+          key={i}
+          item={item}
+          onEdit={() => this.onEditClick(item)}
+          onDelete={() => this.onDeleteClick(item)}
+          collapse={this.state.showTrans ? '' : 'hidden'}
+        />
       )
     })
     return rows;
@@ -107,7 +131,13 @@ class CostTable extends Component {
   renderCasa() {
     let rows = this.props.casa.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
+        <TableRow
+          key={i}
+          item={item}
+          onEdit={() => this.onEditClick(item)}
+          onDelete={() => this.onDeleteClick(item)}
+          collapse={this.state.showCasa ? '' : 'hidden'}
+        />
       )
     })
     return rows;
@@ -116,7 +146,13 @@ class CostTable extends Component {
   renderPersonal() {
     let rows = this.props.personal.map((item, i) => {
       return (
-        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
+        <TableRow
+          key={i}
+          item={item}
+          onEdit={() => this.onEditClick(item)}
+          onDelete={() => this.onDeleteClick(item)}
+          collapse={this.state.showPersonal ? '' : 'hidden'}
+        />
       );
     })
     return rows;
@@ -125,7 +161,13 @@ class CostTable extends Component {
   renderFun() {
     let rows = this.props.fun.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
+        <TableRow
+          key={i}
+          item={item}
+          onEdit={() => this.onEditClick(item)}
+          onDelete={() => this.onDeleteClick(item)}
+          collapse={this.state.showFun ? '' : 'hidden'}
+        />
       )
     })
     return rows;
@@ -134,10 +176,64 @@ class CostTable extends Component {
   renderGata() {
     let rows = this.props.gata.map((item, i) => {
       return(
-        <TableRow key={i} item={item} onEdit={() => this.onEditClick(item)} onDelete={() => this.onDeleteClick(item)} />
+        <TableRow
+          key={i}
+          item={item}
+          onEdit={() => this.onEditClick(item)}
+          onDelete={() => this.onDeleteClick(item)}
+          collapse={this.state.showGata ? '' : 'hidden'}
+        />
       )
     })
     return rows;
+  }
+
+  renderUtilidadesArrow() {
+    if (this.props.utilidadesTotal) {
+      return <i className='fa fa-angle-double-down fa-lg'></i>
+    }
+  }
+
+  renderComidaArrow() {
+    if (this.props.comidaTotal) {
+      return <i className='fa fa-angle-double-down fa-lg'></i>
+    }
+  }
+
+  renderCarroArrow() {
+    if (this.props.carroTotal) {
+      return <i className='fa fa-angle-double-down fa-lg'></i>
+    }
+  }
+
+  renderTransArrow() {
+    if (this.props.transTotal) {
+      return <i className='fa fa-angle-double-down fa-lg'></i>
+    }
+  }
+
+  renderCasaArrow() {
+    if (this.props.casaTotal) {
+      return <i className='fa fa-angle-double-down fa-lg'></i>
+    }
+  }
+
+  renderPersonalArrow() {
+    if (this.props.personalTotal) {
+      return <i className='fa fa-angle-double-down fa-lg'></i>
+    }
+  }
+
+  renderFunArrow() {
+    if (this.props.funTotal) {
+      return <i className='fa fa-angle-double-down fa-lg'></i>
+    }
+  }
+
+  renderGataArrow() {
+    if (this.props.gataTotal) {
+      return <i className='fa fa-angle-double-down fa-lg'></i>
+    }
   }
 
   render() {
@@ -185,10 +281,10 @@ class CostTable extends Component {
               <td className='right-align'>
                 <NumberFormat value={this.props.utilidadesTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} />
               </td>
-              <td></td>
+              <td className='center'>{this.renderUtilidadesArrow()}</td>
             </tr>
             {this.renderUtilidades()}
-            <tr className='category-row'>
+            <tr className='category-row' onClick={() => this.setState({ showComida: !this.state.showComida })}>
               <th>COMIDA</th>
               <td></td>
               <td></td>
@@ -196,10 +292,10 @@ class CostTable extends Component {
               <td className='right-align'>
                 <NumberFormat value={this.props.comidaTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} />
               </td>
-              <td></td>
+              <td className='center'>{this.renderComidaArrow()}</td>
             </tr>
             {this.renderComida()}
-            <tr className='category-row'>
+            <tr className='category-row' onClick={() => this.setState({ showCarro: !this.state.showCarro })}>
               <th>CARRO</th>
               <td></td>
               <td></td>
@@ -207,10 +303,10 @@ class CostTable extends Component {
               <td className='right-align'>
                 <NumberFormat value={this.props.carroTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} />
               </td>
-              <td></td>
+              <td className='center'>{this.renderCarroArrow()}</td>
             </tr>
             {this.renderCarro()}
-            <tr className='category-row'>
+            <tr className='category-row' onClick={() => this.setState({ showTrans: !this.state.showTrans })}>
               <th>TRANSPORTE</th>
               <td></td>
               <td></td>
@@ -218,10 +314,10 @@ class CostTable extends Component {
               <td className='right-align'>
                 <NumberFormat value={this.props.transTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} />
               </td>
-              <td></td>
+              <td className='center'>{this.renderTransArrow()}</td>
             </tr>
             {this.renderTrans()}
-            <tr className='category-row'>
+            <tr className='category-row' onClick={() => this.setState({ showCasa: !this.state.showCasa })}>
               <th>CASA</th>
               <td></td>
               <td></td>
@@ -229,10 +325,10 @@ class CostTable extends Component {
               <td className='right-align'>
                 <NumberFormat value={this.props.casaTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} />
               </td>
-              <td></td>
+              <td className='center'>{this.renderCasaArrow()}</td>
             </tr>
             {this.renderCasa()}
-            <tr className='category-row'>
+            <tr className='category-row' onClick={() => this.setState({ showPersonal: !this.state.showPersonal })}>
               <th>PERSONAL</th>
               <td></td>
               <td></td>
@@ -240,10 +336,10 @@ class CostTable extends Component {
               <td className='right-align'>
                 <NumberFormat value={this.props.personalTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} />
               </td>
-              <td></td>
+              <td className='center'>{this.renderPersonalArrow()}</td>
             </tr>
             {this.renderPersonal()}
-            <tr className='category-row'>
+            <tr className='category-row' onClick={() => this.setState({ showFun: !this.state.showFun })}>
               <th>FUN</th>
               <td></td>
               <td></td>
@@ -251,10 +347,10 @@ class CostTable extends Component {
               <td className='right-align'>
                 <NumberFormat value={this.props.funTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} />
               </td>
-              <td></td>
+              <td className='center'>{this.renderFunArrow()}</td>
             </tr>
             {this.renderFun()}
-            <tr className='category-row'>
+            <tr className='category-row' onClick={() => this.setState({ showGata: !this.state.showGata })}>
               <th>GATA</th>
               <td></td>
               <td></td>
@@ -262,7 +358,7 @@ class CostTable extends Component {
               <td className='right-align'>
                 <NumberFormat value={this.props.gataTotal} displayType={'text'} thousandSeparator={true} prefix={'₡ '} />
               </td>
-              <td></td>
+              <td className='center'>{this.renderGataArrow()}</td>
             </tr>
             {this.renderGata()}
           </tbody>
